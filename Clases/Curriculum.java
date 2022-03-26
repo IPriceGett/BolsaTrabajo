@@ -1,11 +1,13 @@
+package Clases;
+
 public class Curriculum extends Persona{
     private Skill[] skills;
-    private int añosExperiencia;
+    private int annosExperiencia;
     private String instituto;
 
-    public Curriculum(int añosExperiencia, String instituto, Skill[] skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
+    public Curriculum(int annosExperiencia, String instituto, Skill[] skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
         super(nombre, apellido, rut, genero, edad, correo, telefono);
-        this.añosExperiencia = añosExperiencia;
+        this.annosExperiencia = annosExperiencia;
         this.instituto = instituto;
         this.skills = skills;
     }
@@ -14,8 +16,8 @@ public class Curriculum extends Persona{
         return this.instituto;
     }
 
-    public int getAñosExperiencia(){
-        return this.añosExperiencia;
+    public int getAnnosExperiencia(){
+        return this.annosExperiencia;
     }
 
     public Skill[] getSkills(){
@@ -26,8 +28,8 @@ public class Curriculum extends Persona{
         this.instituto = instituto;
     }
 
-    public void setAñosExperiencia(int añosExperiencia){
-        this.añosExperiencia = añosExperiencia;
+    public void setAnnosExperiencia(int annosExperiencia){
+        this.annosExperiencia = annosExperiencia;
     }
 
     public void setSkills(Skill[] skills){
