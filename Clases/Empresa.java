@@ -1,11 +1,12 @@
+package Clases;
 
 public class Empresa {
     private String nombre;
     private Area[] areas;
 
-    public Empresa(String nombre, int numeroAreas){
+    public Empresa(String nombre, Area[] areas){
         this.nombre = nombre;
-        this.areas = new Area[numeroAreas];
+        this.areas = areas;
     }
 
     public String getNombre(){
@@ -23,9 +24,7 @@ public class Empresa {
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
-    public void setNewArea(Area area){
-        int cont = 0;
-        while( this.areas[cont] != null) cont++;
-        this.areas[cont] = area;
+    public void setAreas(Area[] areas){
+        this.areas = areas;
     }
 }

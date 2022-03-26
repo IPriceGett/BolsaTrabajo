@@ -1,3 +1,5 @@
+package Clases;
+
 public class Curriculum extends Persona{
     private Skill[] skills;
     private int añosExperiencia;

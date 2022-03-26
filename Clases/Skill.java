@@ -1,3 +1,5 @@
+package Clases;
+
 public class Skill {
     private int id;
     private String nombre;

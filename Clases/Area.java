@@ -1,3 +1,5 @@
+package Clases;
+
 public class Area {
     private String nombre;
     private int vacantes;
