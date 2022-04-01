@@ -1,4 +1,12 @@
-import Clases.*;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.mycompany.proyecto.Back;
+import com.mycompany.proyecto.Back.clases.*;
+
 
 public class BolsaTrabajo{
     public static void main(String[] args){
@@ -40,9 +48,6 @@ public class BolsaTrabajo{
         Empresa falsa = new Empresa("Avenida falsa 123", areas);
 
         System.out.println(falsa.getNombre() + " es la mejor empresa de lavado de dinero con NFTS del mundo");
-
-
-
 
     }
 }

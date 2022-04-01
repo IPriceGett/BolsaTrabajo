@@ -1,5 +1,15 @@
-package Clases;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+package com.mycompany.proyecto.Back.clases;
+
+/**
+ *
+ * @author Ignacio
+ */
 public class Persona {
     private String nombre;
     private String apellido;
@@ -17,6 +27,16 @@ public class Persona {
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
+    }
+
+    public Persona(){
+        this.nombre = "";
+        this.apellido = "";
+        this.rut = "";
+        this.genero = "";
+        this.edad = "";
+        this.correo = "";
+        this.telefono = "";
     }
 
     public String getNombre(){

@@ -1,6 +1,16 @@
-package Clases;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.proyecto.Back.clases;
 
+/**
+ *
+ * @author Ignacio
+ */
 public class Area {
+
     private String nombre;
     private int vacantes;
     private int total;
@@ -15,6 +25,15 @@ public class Area {
         this.contratados = new Curriculum[total];
         this.postulantes = new Curriculum[maximoPostulantes];
         this.skills = skills;
+    }
+
+    public Area(){
+        this.nombre = "";
+        this.vacantes = 1;
+        this.total = 1;
+        this.contratados = new Curriculum[1];
+        this.postulantes = new Curriculum[1];
+        this.skills = new Skills[1];
     }
 
     public String getNombre(){

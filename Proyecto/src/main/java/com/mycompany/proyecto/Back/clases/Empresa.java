@@ -1,12 +1,28 @@
-package Clases;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+package com.mycompany.proyecto.Back.clases;
+
+/**
+ *
+ * @author Ignacio
+ */
 public class Empresa {
+
     private String nombre;
     private Area[] areas;
 
     public Empresa(String nombre, Area[] areas){
         this.nombre = nombre;
         this.areas = areas;
+    }
+
+    public Empresa(){
+        this.nombre = "";
+        this.areas = new Area[1];
     }
 
     public String getNombre(){
@@ -27,4 +43,5 @@ public class Empresa {
     public void setAreas(Area[] areas){
         this.areas = areas;
     }
+
 }

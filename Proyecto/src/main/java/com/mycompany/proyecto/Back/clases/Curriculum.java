@@ -1,6 +1,17 @@
-package Clases;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+package com.mycompany.proyecto.Back.clases;
+
+/**
+ *
+ * @author Ignacio
+ */
 public class Curriculum extends Persona{
+
     private Skill[] skills;
     private int annosExperiencia;
     private String instituto;
@@ -10,6 +21,20 @@ public class Curriculum extends Persona{
         this.annosExperiencia = annosExperiencia;
         this.instituto = instituto;
         this.skills = skills;
+    }
+
+    public Curriculum(int annosExperiencia, String instituto, Skill[] skills){
+        super();
+        this.annosExperiencia = annosExperiencia;
+        this.instituto = instituto;
+        this.skills = skills;
+    }
+
+    public Curriculum(){
+        super();
+        this.annosExperiencia = 0;
+        this.instituto = "";
+        this.skills = new Skill();
     }
 
     public String getInstituto(){
@@ -35,4 +60,5 @@ public class Curriculum extends Persona{
     public void setSkills(Skill[] skills){
         this.skills = skills;
     }
+
 }
