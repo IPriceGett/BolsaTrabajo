@@ -6,6 +6,7 @@
 
 package com.mycompany.proyecto.Back;
 import com.mycompany.proyecto.Back.clases.*;
+import java.util.LinkedList;
 
 
 public class BolsaTrabajo{
@@ -15,26 +16,26 @@ public class BolsaTrabajo{
         Skill node = new Skill(3,"NodeJs");
         Skill angular = new Skill(4,"Angular");
 
-        Skill[] informaticaSkills = new Skill[4];
-        informaticaSkills[0] = python;
-        informaticaSkills[1] = sql;
-        informaticaSkills[2] = node;
-        informaticaSkills[3] = angular;
+        LinkedList informaticaSkills = new LinkedList();
+        informaticaSkills.add(python);
+        informaticaSkills.add(sql); 
+        informaticaSkills.add(node);
+        informaticaSkills.add(angular);
 
         Skill contador = new Skill(5,"Contador");
         Skill excel = new Skill(6,"Excel");
 
 
-        Skill[] finanzasSkills = new Skill[2];
-        finanzasSkills[0] = contador;
-        finanzasSkills[1] = excel;
+        LinkedList finanzasSkills = new LinkedList();
+        finanzasSkills.add(contador);
+        finanzasSkills.add(excel);
 
         Skill publicidad = new Skill(7,"Publicidad");
         Skill ps = new Skill(8,"Photoshop");
 
-        Skill[] marketingSkills = new Skill[2];
-        marketingSkills[0] = publicidad;
-        marketingSkills[1] = ps;
+        LinkedList marketingSkills = new LinkedList();
+        marketingSkills.add(publicidad);
+        marketingSkills.add(ps);
 
         Area informatica = new Area("Informatica", 10, 10, informaticaSkills, 20);
         Area finanzas = new Area("Finanzas", 10, 10, finanzasSkills, 20);

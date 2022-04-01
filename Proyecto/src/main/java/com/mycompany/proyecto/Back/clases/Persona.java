@@ -34,7 +34,7 @@ public class Persona {
         this.apellido = "";
         this.rut = "";
         this.genero = "";
-        this.edad = "";
+        this.edad = 1;
         this.correo = "";
         this.telefono = "";
     }

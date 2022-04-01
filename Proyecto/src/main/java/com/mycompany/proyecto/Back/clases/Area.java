@@ -9,33 +9,37 @@ package com.mycompany.proyecto.Back.clases;
  *
  * @author Ignacio
  */
+
+import java.util.LinkedList;
+
 public class Area {
 
     private String nombre;
     private int vacantes;
     private int total;
-    private Skill[] skills;
-    private Curriculum[] contratados;
-    private Curriculum[] postulantes;
+    private LinkedList skills;
+    private Curriculum[] contratados; //mapa 
+    private Curriculum[] postulantes; //mapa
 
-    public Area(String nombre, int vacantes, int total, Skill[] skills, int maximoPostulantes){
-        this.nombre = nombre;
-        this.vacantes = vacantes;
-        this.total = total;
-        this.contratados = new Curriculum[total];
-        this.postulantes = new Curriculum[maximoPostulantes];
-        this.skills = skills;
-    }
-
-    public Area(){
+     public Area(){
         this.nombre = "";
         this.vacantes = 1;
         this.total = 1;
+        this.skills = new LinkedList();
         this.contratados = new Curriculum[1];
-        this.postulantes = new Curriculum[1];
-        this.skills = new Skills[1];
+        this.postulantes = new Curriculum[1];  
     }
 
+    public Area(String nombre, int vacantes, int total, LinkedList skills, int maximoPostulantes){
+        this.nombre = nombre;
+        this.vacantes = vacantes;
+        this.total = total;
+        this.skills = skills;
+        this.contratados = new Curriculum[total];
+        this.postulantes = new Curriculum[maximoPostulantes];  
+    }
+
+   
     public String getNombre(){
         return this.nombre;
     }
@@ -44,12 +48,12 @@ public class Area {
         return this.vacantes;
     }
 
-    public Skill[] getSkills(){
+    public LinkedList getSkills(){
         return this.skills;
     }
 
     public Skill getSkill(int numeroSkill){
-        return this.skills[numeroSkill];
+        return (Skill) this.skills.get(numeroSkill);
     }
 
     public Curriculum[] getPostulantes(){
@@ -72,7 +76,7 @@ public class Area {
         this.vacantes = vacantes;
     }
 
-    public void setSkills(Skill[] skills){
+    public void setSkills(LinkedList skills){
         this.skills = skills;
     }
 

@@ -10,20 +10,23 @@ package com.mycompany.proyecto.Back.clases;
  *
  * @author Ignacio
  */
+
+import java.util.LinkedList;
+
 public class Curriculum extends Persona{
 
-    private Skill[] skills;
+    private LinkedList skills; //lista
     private int annosExperiencia;
     private String instituto;
 
-    public Curriculum(int annosExperiencia, String instituto, Skill[] skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
+    public Curriculum(int annosExperiencia, String instituto, LinkedList skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
         super(nombre, apellido, rut, genero, edad, correo, telefono);
         this.annosExperiencia = annosExperiencia;
         this.instituto = instituto;
         this.skills = skills;
     }
 
-    public Curriculum(int annosExperiencia, String instituto, Skill[] skills){
+    public Curriculum(int annosExperiencia, String instituto, LinkedList skills){
         super();
         this.annosExperiencia = annosExperiencia;
         this.instituto = instituto;
@@ -34,7 +37,7 @@ public class Curriculum extends Persona{
         super();
         this.annosExperiencia = 0;
         this.instituto = "";
-        this.skills = new Skill();
+        this.skills = new LinkedList();
     }
 
     public String getInstituto(){
@@ -45,7 +48,7 @@ public class Curriculum extends Persona{
         return this.annosExperiencia;
     }
 
-    public Skill[] getSkills(){
+    public LinkedList getSkills(){
         return this.skills;
     }
 
@@ -57,7 +60,7 @@ public class Curriculum extends Persona{
         this.annosExperiencia = annosExperiencia;
     }
 
-    public void setSkills(Skill[] skills){
+    public void setSkills(LinkedList skills){
         this.skills = skills;
     }
 
