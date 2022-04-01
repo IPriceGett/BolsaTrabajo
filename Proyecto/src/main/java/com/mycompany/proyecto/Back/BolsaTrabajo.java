@@ -4,14 +4,10 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.proyecto;
-import com.mycompany.proyecto.Skill;
+package com.mycompany.proyecto.Back;
+import com.mycompany.proyecto.Back.clases.*;
 
 
-/**
- *
- * @author Ignacio
- */
 public class BolsaTrabajo{
     public static void main(String[] args){
         Skill python = new Skill(1,"Python");

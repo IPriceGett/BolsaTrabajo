@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.Back.clases;
 
 /**
  *
@@ -26,6 +25,15 @@ public class Area {
         this.contratados = new Curriculum[total];
         this.postulantes = new Curriculum[maximoPostulantes];
         this.skills = skills;
+    }
+
+    public Area(){
+        this.nombre = "";
+        this.vacantes = 1;
+        this.total = 1;
+        this.contratados = new Curriculum[1];
+        this.postulantes = new Curriculum[1];
+        this.skills = new Skills[1];
     }
 
     public String getNombre(){

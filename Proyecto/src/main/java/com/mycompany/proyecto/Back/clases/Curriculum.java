@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.Back.clases;
 
 /**
  *
@@ -21,6 +21,20 @@ public class Curriculum extends Persona{
         this.annosExperiencia = annosExperiencia;
         this.instituto = instituto;
         this.skills = skills;
+    }
+
+    public Curriculum(int annosExperiencia, String instituto, Skill[] skills){
+        super();
+        this.annosExperiencia = annosExperiencia;
+        this.instituto = instituto;
+        this.skills = skills;
+    }
+
+    public Curriculum(){
+        super();
+        this.annosExperiencia = 0;
+        this.instituto = "";
+        this.skills = new Skill();
     }
 
     public String getInstituto(){

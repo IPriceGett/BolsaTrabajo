@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.Back.clases;
 
 /**
  *
@@ -27,6 +27,16 @@ public class Persona {
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
+    }
+
+    public Persona(){
+        this.nombre = "";
+        this.apellido = "";
+        this.rut = "";
+        this.genero = "";
+        this.edad = "";
+        this.correo = "";
+        this.telefono = "";
     }
 
     public String getNombre(){

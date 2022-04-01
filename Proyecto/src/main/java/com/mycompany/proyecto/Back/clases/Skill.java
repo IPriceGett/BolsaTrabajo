@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.Back.clases;
 
 /**
  *
@@ -17,6 +17,11 @@ public class Skill {
     public Skill(int id, String nombre){
         this.id = id;
         this.nombre = nombre;
+    }
+
+    public Skill(){
+        this.id = 1;
+        this.nombre = "";
     }
 
     public int getId(){

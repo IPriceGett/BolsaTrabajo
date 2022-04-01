@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.Back.clases;
 
 /**
  *
@@ -18,6 +18,11 @@ public class Empresa {
     public Empresa(String nombre, Area[] areas){
         this.nombre = nombre;
         this.areas = areas;
+    }
+
+    public Empresa(){
+        this.nombre = "";
+        this.areas = new Area[1];
     }
 
     public String getNombre(){
