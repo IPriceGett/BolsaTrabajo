@@ -10,19 +10,22 @@ package com.mycompany.proyecto.Back.clases;
  *
  * @author Ignacio
  */
+
+import java.util.LinkedList;
+
 public class Empresa {
 
     private String nombre;
-    private Area[] areas;
+    private LinkedList areas;
 
-    public Empresa(String nombre, Area[] areas){
+    public Empresa(String nombre, LinkedList areas){
         this.nombre = nombre;
         this.areas = areas;
     }
 
     public Empresa(){
         this.nombre = "";
-        this.areas = new Area[1];
+        this.areas = new LinkedList();
     }
 
     public String getNombre(){
@@ -30,17 +33,17 @@ public class Empresa {
     }
 
     public Area getArea(int indice){
-        return this.areas[indice];
+        return (Area)  this.areas.get(indice);
     }
 
-    public Area[] getAreas(){
+    public LinkedList getAreas(){
         return this.areas;
     }
 
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
-    public void setAreas(Area[] areas){
+    public void setAreas(LinkedList areas){
         this.areas = areas;
     }
 

@@ -41,10 +41,10 @@ public class BolsaTrabajo{
         Area finanzas = new Area("Finanzas", 10, 10, finanzasSkills, 20);
         Area marketing = new Area("Marketing", 10, 10, marketingSkills, 20);
 
-        Area[] areas = new Area[3];
-        areas[0] = informatica;
-        areas[1] = finanzas;
-        areas[2] = marketing;
+        LinkedList areas = new LinkedList();
+        areas.add(informatica);
+        areas.add(finanzas);
+        areas.add(marketing);
 
         Empresa falsa = new Empresa("Avenida falsa 123", areas);
 
