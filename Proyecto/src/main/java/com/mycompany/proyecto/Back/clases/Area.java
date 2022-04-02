@@ -10,6 +10,7 @@ package com.mycompany.proyecto.Back.clases;
  * @author Ignacio
  */
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Area {
@@ -18,25 +19,25 @@ public class Area {
     private int vacantes;
     private int total;
     private LinkedList skills;
-    private Curriculum[] contratados; //mapa 
-    private Curriculum[] postulantes; //mapa
+    private HashMap contratados; //mapa 
+    private HashMap postulantes; //mapa
 
      public Area(){
         this.nombre = "";
         this.vacantes = 1;
         this.total = 1;
         this.skills = new LinkedList();
-        this.contratados = new Curriculum[1];
-        this.postulantes = new Curriculum[1];  
+        this.contratados = new HashMap();
+        this.postulantes = new HashMap();  
     }
 
-    public Area(String nombre, int vacantes, int total, LinkedList skills, int maximoPostulantes){
+    public Area(String nombre, int vacantes, int total, LinkedList skills, HashMap contratados, HashMap postulantes){
         this.nombre = nombre;
         this.vacantes = vacantes;
         this.total = total;
         this.skills = skills;
-        this.contratados = new Curriculum[total];
-        this.postulantes = new Curriculum[maximoPostulantes];  
+        this.contratados = contratados;
+        this.postulantes = postulantes;  
     }
 
    
@@ -56,11 +57,11 @@ public class Area {
         return (Skill) this.skills.get(numeroSkill);
     }
 
-    public Curriculum[] getPostulantes(){
+    public HashMap getPostulantes(){
         return this.postulantes;
     }
 
-    public Curriculum[] getContratados(){
+    public HashMap getContratados(){
         return this.contratados;
     }
 
@@ -80,11 +81,11 @@ public class Area {
         this.skills = skills;
     }
 
-    public void setContratados(Curriculum[] contratados){
+    public void setContratados(HashMap contratados){
         this.contratados = contratados;
     }
 
-    public void setPostulantes(Curriculum[] postulantes){
+    public void setPostulantes(HashMap postulantes){
         this.postulantes = postulantes;
     }
 

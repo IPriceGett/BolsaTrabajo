@@ -15,7 +15,7 @@ import java.util.LinkedList;
 
 public class Curriculum extends Persona{
 
-    private LinkedList skills; //lista
+    private LinkedList skills; 
     private int annosExperiencia;
     private String instituto;
 
