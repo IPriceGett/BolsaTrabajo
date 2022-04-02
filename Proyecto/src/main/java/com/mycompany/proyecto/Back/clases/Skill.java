@@ -18,7 +18,12 @@ public class Skill {
         this.id = id;
         this.nombre = nombre;
     }
-
+    
+     public Skill(String nombre, int id){
+        this.id = id;
+        this.nombre = nombre;
+    }
+     
     public Skill(){
         this.id = 1;
         this.nombre = "";
