@@ -11,6 +11,7 @@ import com.mycompany.proyecto.Back.utiles.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+//comentario de prueba
 
 public class BolsaTrabajo{
     public static void main(String[] args){
