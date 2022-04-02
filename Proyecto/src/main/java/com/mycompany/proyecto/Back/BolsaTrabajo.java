@@ -48,13 +48,27 @@ public class BolsaTrabajo{
         areas.add(marketing);
 
         LinkedList skillsPostulante1 = new LinkedList();
-        aux.agregarSkill(skillsPostulante1, 1,"Python");
-        aux.agregarSkill(skillsPostulante1, 2,"SQL");
+        aux.agregarSkill(skillsPostulante1, 1, "Python");
+        aux.agregarSkill(skillsPostulante1, "SQL", 2);
 
-        Curriculum postulante1 = aux.crearPostulante("Juan", "Perez", "9876543-2", "M", 25, "juan.perez25@gmail.com", "988776655", skillsPostulante1, 8, "PUCV");
+        Curriculum postulante1 = aux.crearPostulante("Juan", "Perez", "9876543-2", "M", 35, "juan.perez25@gmail.com", "988776655", skillsPostulante1, 8, "PUCV");
 
         aux.agregarPostulante(postulantesInformatica, postulante1);
-        aux.buscarPostulante(postulantesInformatica, "9876543-2");
+        aux.buscarPostulante(postulantesInformatica, postulante1.getRut());
+        System.out.println();
+        
+         LinkedList skillsPostulante2 = new LinkedList();
+        aux.agregarSkill(7, "Publicidad", skillsPostulante2);
+        aux.agregarSkill(skillsPostulante2, "Photoshop", 8);
+        
+        Curriculum postulante2 = aux.crearPostulante("Ana", "Gallegos", "5678912-1", "F", 46, "ana.gallegos36@gmail.com", "912345678", skillsPostulante2, 15, "PUCV");
+        aux.agregarPostulante(postulante2, postulantesMarketing);
+        aux.buscarPostulante(postulantesMarketing, postulante2.getRut());
+        System.out.println();
+        
+        aux.buscarPostulante(postulantesMarketing, "abc"); //Si se busca un postulante no existente
+        System.out.println();
+
         
         Empresa falsa = new Empresa("Avenida falsa 123", areas);
 

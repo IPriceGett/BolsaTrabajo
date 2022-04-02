@@ -33,8 +33,11 @@ public class Utiles {
         return postulante;
     }
     
-    //agregar postulante
+    //Agregar postulante
     
+    /*A los metodos para agregar postulantes les falta el detalle de que depende de sus skills a cual mapa de la
+    respectiva area es asignado, esto aun no está implementado. 
+    */
     public void agregarPostulante(HashMap map, Curriculum postulante){
         String rut = postulante.getRut();
         if (map.containsKey(rut)){
@@ -65,7 +68,7 @@ public class Utiles {
         map.remove(rut);
     }
     
-     //agregar trabajador
+     //Agregar trabajador
      
     public void agregarTrabajador(HashMap map, Curriculum trabajador){
         String rut = trabajador.getRut();
@@ -122,6 +125,11 @@ public class Utiles {
     //Buscar postulantes 
     
     public void buscarPostulante(HashMap postulantes, String rut){
+        if (postulantes.containsKey(rut) == false){
+            System.out.println("Postulante no encontrado.");
+            return;
+        }
+
         Curriculum postulante = (Curriculum) postulantes.get(rut);
         System.out.println("Nombre: " + postulante.getNombre() + " " + postulante.getApellido());
         System.out.println("Rut: " + postulante.getRut());
@@ -143,6 +151,11 @@ public class Utiles {
     }
 
  public void buscarPostulante(String rut, HashMap postulantes){
+         if (postulantes.containsKey(rut) == false){
+            System.out.println("Postulante no encontrado.");
+            return;
+        }
+        
         Curriculum postulante = (Curriculum) postulantes.get(rut);
         System.out.println("Nombre: " + postulante.getNombre() + " " + postulante.getApellido());
         System.out.println("Rut: " + postulante.getRut());
