@@ -33,6 +33,8 @@ public class Utiles {
         return postulante;
     }
     
+    //agregar postulante
+    
     public void agregarPostulante(HashMap map, Curriculum postulante){
         String rut = postulante.getRut();
         if (map.containsKey(rut)){
@@ -43,10 +45,28 @@ public class Utiles {
         map.put(rut, postulante);
     }
     
+    public void agregarPostulante(Curriculum postulante,HashMap map){
+        String rut = postulante.getRut();
+        if (map.containsKey(rut)){
+            System.out.println("Este postulante ya se encuentra en nuestra base de datos");
+            return;
+        }
+        
+        map.put(rut, postulante);
+    }
+    
+    //Eliminar postulante
+    
     public void eliminarPostulante(HashMap map, String rut){
         map.remove(rut);
     }
     
+     public void eliminarPostulante(String rut,HashMap map){
+        map.remove(rut);
+    }
+    
+     //agregar trabajador
+     
     public void agregarTrabajador(HashMap map, Curriculum trabajador){
         String rut = trabajador.getRut();
          if (map.containsKey(rut)){
@@ -56,17 +76,51 @@ public class Utiles {
         map.put(map, rut);
     }
     
+    public void agregarTrabajador(Curriculum trabajador, HashMap map){
+        String rut = trabajador.getRut();
+         if (map.containsKey(rut)){
+            System.out.println("Este trabajador ya se encuentra en nuestra base de datos");
+            return;
+        }
+        map.put(map, rut);
+    }
+    
+    //Eliminar Trabajador
+    
     public void eliminarTrabajador(HashMap map, String rut){
         map.remove(rut);
     }
+    
+    public void eliminarTrabajador(String rut,HashMap map){
+        map.remove(rut);
+    }
+    
+    //Agregar skills
     
     public void agregarSkill(LinkedList list, int id, String nombre){
         Skill skill = new Skill(id, nombre);
         list.add(skill);
     }
     
+    public void agregarSkill(LinkedList list, String nombre, int id){
+        Skill skill = new Skill(id, nombre);
+        list.add(skill);
+    }
+    
+    public void agregarSkill(String nombre, int id, LinkedList list){
+        Skill skill = new Skill(id, nombre);
+        list.add(skill);
+    }
+    
+    public void agregarSkill(int id, String nombre, LinkedList list){
+        Skill skill = new Skill(id, nombre);
+        list.add(skill);
+    }
+    
     public void eliminarSkill(LinkedList list){}
 
+    //Buscar postulantes 
+    
     public void buscarPostulante(HashMap postulantes, String rut){
         Curriculum postulante = (Curriculum) postulantes.get(rut);
         System.out.println("Nombre: " + postulante.getNombre() + " " + postulante.getApellido());
@@ -87,5 +141,24 @@ public class Utiles {
         System.out.println();
         
     }
-    
+
+ public void buscarPostulante(String rut, HashMap postulantes){
+        Curriculum postulante = (Curriculum) postulantes.get(rut);
+        System.out.println("Nombre: " + postulante.getNombre() + " " + postulante.getApellido());
+        System.out.println("Rut: " + postulante.getRut());
+        System.out.println("Genero: " + postulante.getGenero());
+        System.out.println("Edad: " + postulante.getEdad());
+        System.out.println("Correo: " + postulante.getCorreo());
+        System.out.println("Telefono: " + postulante.getTelefono());
+        System.out.println("Años de experiencia: " + postulante.getAnnosExperiencia());
+        System.out.println("Instituto: " + postulante.getInstituto());
+
+        LinkedList skills = postulante.getSkills();
+        System.out.print("Skills: ");
+        for (int i = 0; i < skills.size(); i++){
+            Skill skill = (Skill) skills.get(i);
+            System.out.print(skill.getNombre() + ", ");
+        }
+        System.out.println();
+    }    
 }
