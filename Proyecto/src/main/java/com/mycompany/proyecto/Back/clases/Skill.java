@@ -6,6 +6,8 @@
 
 package com.mycompany.proyecto.Back.clases;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Ignacio
@@ -44,4 +46,28 @@ public class Skill {
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
+    
+        //Agregar skills
+    
+    public void agregarSkill(LinkedList list, int id, String nombre){
+        Skill skill = new Skill(id, nombre);
+        list.add(skill);
+    }
+    
+    public void agregarSkill(LinkedList list, String nombre, int id){
+        Skill skill = new Skill(id, nombre);
+        list.add(skill);
+    }
+    
+    public void agregarSkill(String nombre, int id, LinkedList list){
+        Skill skill = new Skill(id, nombre);
+        list.add(skill);
+    }
+    
+    public void agregarSkill(int id, String nombre, LinkedList list){
+        Skill skill = new Skill(id, nombre);
+        list.add(skill);
+    }
+    
+    public void eliminarSkill(LinkedList list){}
 }

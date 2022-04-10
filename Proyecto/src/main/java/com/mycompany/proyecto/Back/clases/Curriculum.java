@@ -10,14 +10,15 @@ package com.mycompany.proyecto.Back.clases;
  *
  * @author Ignacio
  */
-
+import java.util.Comparator;
 import java.util.LinkedList;
 
-public class Curriculum extends Persona{
+public class Curriculum extends Persona {
 
-    private LinkedList skills; 
+    private LinkedList<Skill> skills; 
     private int annosExperiencia;
     private String instituto;
+    private int puntaje;
 
     public Curriculum(int annosExperiencia, String instituto, LinkedList skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
         super(nombre, apellido, rut, genero, edad, correo, telefono);
@@ -37,7 +38,15 @@ public class Curriculum extends Persona{
         super();
         this.annosExperiencia = 0;
         this.instituto = "";
-        this.skills = new LinkedList();
+        this.skills = new LinkedList<>();
+        this.puntaje = 0;
+    }
+    
+    public Curriculum(String nombre, String apellido, String rut,  String genero, int edad, String correo, String telefono, int annosExperiencia, String instituto){
+        super(nombre, apellido, rut, genero, edad, correo, telefono);
+        this.annosExperiencia = annosExperiencia;
+        this.instituto = instituto;
+        this.skills = new LinkedList<>();
     }
 
     public String getInstituto(){
@@ -52,6 +61,10 @@ public class Curriculum extends Persona{
         return this.skills;
     }
 
+    public int getPuntaje(){
+        return this.puntaje;
+    }
+
     public void setInstituto(String instituto){
         this.instituto = instituto;
     }
@@ -63,5 +76,12 @@ public class Curriculum extends Persona{
     public void setSkills(LinkedList skills){
         this.skills = skills;
     }
+
+    public void setPuntaje(int puntaje){
+        this.puntaje = puntaje;
+    }
+    
+    
+    	
 
 }

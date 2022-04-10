@@ -18,26 +18,35 @@ public class Area {
     private String nombre;
     private int vacantes;
     private int total;
-    private LinkedList skills;
+    private LinkedList<Skill> skills;
     private HashMap contratados; //mapa 
-    private HashMap postulantes; //mapa
+    private LinkedList<Curriculum> postulantes; 
 
      public Area(){
         this.nombre = "";
         this.vacantes = 1;
         this.total = 1;
-        this.skills = new LinkedList();
+        this.skills = new LinkedList<>();
         this.contratados = new HashMap();
-        this.postulantes = new HashMap();  
+        this.postulantes = new LinkedList<>();  
     }
 
-    public Area(String nombre, int vacantes, int total, LinkedList skills, HashMap contratados, HashMap postulantes){
+    public Area(String nombre, int vacantes, int total, LinkedList skills, HashMap contratados, LinkedList postulantes){
         this.nombre = nombre;
         this.vacantes = vacantes;
         this.total = total;
         this.skills = skills;
         this.contratados = contratados;
         this.postulantes = postulantes;  
+    }
+    
+    public Area(String nombre, int vacantes, int total){
+        this.nombre = nombre;
+        this.vacantes = vacantes;
+        this.total = total;
+        this.skills = new LinkedList<>();
+        this.contratados = new HashMap();
+        this.postulantes = new LinkedList<>();  
     }
 
    
@@ -57,7 +66,7 @@ public class Area {
         return (Skill) this.skills.get(numeroSkill);
     }
 
-    public HashMap getPostulantes(){
+    public LinkedList getPostulantes(){
         return this.postulantes;
     }
 
@@ -85,8 +94,8 @@ public class Area {
         this.contratados = contratados;
     }
 
-    public void setPostulantes(HashMap postulantes){
-        this.postulantes = postulantes;
+    public void setPostulantes(Curriculum postulante){
+        this.postulantes.add(postulante);
     }
 
 }
