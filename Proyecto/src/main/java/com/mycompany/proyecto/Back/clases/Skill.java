@@ -26,6 +26,11 @@ public class Skill {
         this.nombre = nombre;
     }
      
+     public Skill(String nombre){
+        this.id = 0;
+        this.nombre = nombre;
+    }
+     
     public Skill(){
         this.id = 1;
         this.nombre = "";
@@ -69,9 +74,11 @@ public class Skill {
         list.add(skill);
     }
     
-    public void agregarSkill(int id){
-        
+    public void agregarSkill(String nombre, LinkedList list){
+        Skill skill = new Skill(nombre);
+        list.add(skill);
     }
-    
-    public void eliminarSkill(LinkedList list){}
+
+    public void eliminarSkill(LinkedList list){
+    }
 }

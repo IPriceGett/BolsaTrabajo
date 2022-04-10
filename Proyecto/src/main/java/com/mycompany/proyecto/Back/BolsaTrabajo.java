@@ -12,10 +12,10 @@ import com.mycompany.proyecto.Back.utilidades.*;
 public class BolsaTrabajo{
     public static void main(String[] args){
         
- 
         Skill auxSkill = new Skill();
         Utilidades auxUtil = new Utilidades();
        
+        //Inicializando areas de prueba
         
         Area informatica = new Area("Informatica", 10, 10);
         Area finanzas = new Area("Finanzas", 10, 10);
@@ -37,43 +37,29 @@ public class BolsaTrabajo{
         auxUtil.agregarArea(finanzas);
         auxUtil.agregarArea(marketing);
 
-
+        //Inicializando postulantes de prueba
+        
         Curriculum postulante1 = new Curriculum("Juan", "Perez", "9876543-2", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV");
         auxSkill.agregarSkill(postulante1.getSkills(), 1, "Python");
         auxSkill.agregarSkill(postulante1.getSkills(), "SQL", 2);
-        
-        
+         
         auxUtil.agregarPostulante(postulante1);
         
         Curriculum postulante2 = new Curriculum("Pedro", "Perez", "54545545-6", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV");
-        auxSkill.agregarSkill(postulante2.getSkills(), 5, "Python");
-        auxSkill.agregarSkill(postulante2.getSkills(), "SQL", 6);
+        auxSkill.agregarSkill(postulante2.getSkills(), 5, "Contador");
+        auxSkill.agregarSkill(postulante2.getSkills(), "Excel", 6);
 
         auxUtil.agregarPostulante(postulante2);
         
         Curriculum postulante3 = new Curriculum("Benja", "Perez", "435345345-2", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV");
-        auxSkill.agregarSkill(postulante3.getSkills(), 7, "Python");
-        auxSkill.agregarSkill(postulante3.getSkills(), "SQL", 8);
+        auxSkill.agregarSkill(postulante3.getSkills(), 7, "Publicidad");
+        auxSkill.agregarSkill(postulante3.getSkills(), "Photoshop", 8);
 
         auxUtil.agregarPostulante(postulante3);
-        //auxUtil.agregarInputUsuario();
-         auxUtil.menu();
-        /*        
-        auxUtil.buscarPostulante(postulante1.getRut());
-        System.out.println();
-        auxUtil.buscarPostulante(postulante2.getRut());
-        System.out.println();
-        auxUtil.buscarPostulante(postulante3.getRut());
-        System.out.println();*/
+       
+        //Menu
         
-        auxUtil.mostrarPostulantesPorArea();
+        auxUtil.menu();
         
-        //aux.eliminarPostulante(mapaPostulantes, "9876543-2");
-        //aux.buscarPostulante(postulante1.getRut(), mapaPostulantes);
-        
-        /*
-        aux.buscarPostulante(areas, "abc"); //Si se busca un postulante no existente
-        System.out.println();*/
-
     }
 }

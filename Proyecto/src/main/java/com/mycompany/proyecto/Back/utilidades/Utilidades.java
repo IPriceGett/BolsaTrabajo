@@ -59,11 +59,13 @@ public class Utilidades {
         return postulante;
     }
     
-    //Agregar postulante
+    //Relacionado a postulantes
     
     /*Se ha implementado el comparar las skills del postulante con las de cada area, pero, hasta ahora, al encontrar el primer
       "match", se guarda en esa area. Quizas mas adelante se podria crear una formula para que a diferencia de la version de ahora,
        quede en el area donde mas skills es comun tenga.
+       Por lo tanto por mientras para testear el agregar postulantes se pide ingresar skills relacionadas a una sola area, ya que
+       este sera ingresado al area con el que encuentre la primera skill en comun.
     */
     public void agregarPostulante(Curriculum postulante){
         
@@ -95,7 +97,7 @@ public class Utilidades {
                     
                     skillP = (Skill) listaSkillsP.get(k);
                     
-                    if (skillP.getId() == skillA.getId()){
+                    if (skillP.getNombre().equals(skillA.getNombre())){
                         
                         listaPostulantes = area.getPostulantes();
                         listaPostulantes.add(postulante);
@@ -109,7 +111,6 @@ public class Utilidades {
             }
         }
     
-        
         mapaPostulantes.put(postulante.getRut(), postulante);
         
         System.out.println("Postulante añadido.");
@@ -141,20 +142,27 @@ public class Utilidades {
         scn.nextLine();
         System.out.println("Institucion Educacional: ");
         postulante.setInstituto(scn.nextLine());
-        /*
-        String aux = "aux";
+        
+        //Agregar skills
+        
         System.out.println("De la siguiente lista, ingrese, una por una, las skills que maneja. Cuando haya terminado, ingrese '0' ");
+        
         this.mostrarTodasSkills();
-        /*
-        while (!aux.equals("0")){
-            aux = scn.nextLine();
-        }*/
         
-        LinkedList<Skill> skills = new LinkedList<>();
         Skill auxSkill = new Skill();
-        auxSkill.agregarSkill("Python", 1, skills);
-        postulante.setSkills(skills);
+        LinkedList<Skill> listaSkills;
+        listaSkills = new LinkedList<>();
+        String nombreSkill = "aux";
         
+        while (!nombreSkill.equals("0")){
+            nombreSkill = scn.nextLine();
+            if (nombreSkill.equals("0")) break;
+            auxSkill.agregarSkill(nombreSkill, listaSkills);
+        }
+        
+        postulante.setSkills(listaSkills);
+        
+        //Agregar postulante recien creado
         this.agregarPostulante(postulante);   
     }
     
@@ -168,13 +176,10 @@ public class Utilidades {
         }
     }
 }
-
     public void calcularPuntaje(Curriculum postulante){ // random por mientras
         int puntaje = (int) Math.floor(Math.random()*(100-1+1)+1);
         postulante.setPuntaje(puntaje);
     }
- 
-    //Eliminar postulante
     
     public void eliminarPostulante(String rut){
         if (!mapaPostulantes.containsKey(rut)){
@@ -185,26 +190,7 @@ public class Utilidades {
         System.out.println("Postulante eliminado.");
     }
     
-     //Agregar trabajador
-     
-    public void agregarTrabajador(Curriculum trabajador){
-        String rut = trabajador.getRut();
-         if (mapaPostulantes.containsKey(rut)){
-            System.out.println("Este trabajador ya se encuentra en nuestra base de datos");
-            return;
-        }
-        mapaPostulantes.put(rut, trabajador);
-    }
-  
-    //Eliminar Trabajador
-    
-    public void eliminarTrabajador(String rut){
-        mapaPostulantes.remove(rut);
-    }
- 
-    //Buscar postulantes 
-    
-    public void buscarPostulante(String rut){
+     public void buscarPostulante(String rut){
         
          if (!mapaPostulantes.containsKey(rut)){
             System.out.println("Postulante no encontrado.");
@@ -249,6 +235,21 @@ public class Utilidades {
          
   
     }
+    
+     //Relacionado a trabajadores
+     
+    public void agregarTrabajador(Curriculum trabajador){
+        String rut = trabajador.getRut();
+         if (mapaPostulantes.containsKey(rut)){
+            System.out.println("Este trabajador ya se encuentra en nuestra base de datos");
+            return;
+        }
+        mapaPostulantes.put(rut, trabajador);
+    }
+    
+    public void eliminarTrabajador(String rut){
+        mapaPostulantes.remove(rut);
+    }
 
     // Relacionados a Areas
 
@@ -273,53 +274,65 @@ public class Utilidades {
         }
     }
     
+    // Relacionadas a Menu
+    
     public void menu(){
         
+        int opcion;
          do{
-                  printarOpciones();
-                  Scanner option = new Scanner(System.in);
-                  int numero=option.nextInt();
-                  option.nextLine();
-                  switch(numero){
+                  mostrarOpciones();
+                  
+                  Scanner scn = new Scanner(System.in);
+                  
+                  opcion = scn.nextInt();
+                  scn.nextLine();
+                  
+                  switch(opcion){
                 
                   case 1:
        
-                  agregarInputUsuario();
-                  break;
+                    agregarInputUsuario();
+                    break;
                   
                   case 2:
         
-                  agregarInputUsuario(); 
-                  break;
+                    System.out.println("Ingrese el rut del postulante a buscar");
+
+                    String rut = scn.nextLine();
+
+                    buscarPostulante(rut);  
+
+                    break;
                   
                   case 3:
                       
-                  System.out.println("Ingrese el rut del postulante a buscar");
+                    break;
                   
-                  String rut = option.nextLine();
-                  
-                  this.buscarPostulante(rut);      
-                  
-                  break;
+                  case 4:
+                      
+                   mostrarPostulantesPorArea();
+                   
+                   break;
                   
                   case 0:
-                  System.out.println("Exit");
-                  break;
+                    System.out.println("Exit");
+                    break;
                  
                   default:
                   return;
                     
                   }
                   
-                  }while(true);
+                  } while(opcion != 0);
          }
 
-    public void printarOpciones(){
+    public void mostrarOpciones(){
         System.out.println("---------------------------------------");
         System.out.println("Elija una opcion para continuar");
         System.out.println("1.- Agregar postulante");
         System.out.println("2.- Mostrar postulante");
         System.out.println("3.- Agregar area");
         System.out.println("4.- Mostrar datos area:");
+        System.out.println("0.- Salir.");
     }
 }
