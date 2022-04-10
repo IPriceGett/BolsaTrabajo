@@ -10,7 +10,6 @@ package com.mycompany.proyecto.Back.clases;
  *
  * @author Ignacio
  */
-import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Curriculum extends Persona {

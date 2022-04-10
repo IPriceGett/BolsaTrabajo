@@ -48,24 +48,24 @@ public class BolsaTrabajo{
         auxUtil.agregarPostulante(postulante1);
         
         Curriculum postulante2 = new Curriculum("Pedro", "Perez", "54545545-6", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV");
-        auxSkill.agregarSkill(postulante2.getSkills(), 1, "Python");
-        auxSkill.agregarSkill(postulante2.getSkills(), "SQL", 2);
+        auxSkill.agregarSkill(postulante2.getSkills(), 5, "Python");
+        auxSkill.agregarSkill(postulante2.getSkills(), "SQL", 6);
 
         auxUtil.agregarPostulante(postulante2);
         
         Curriculum postulante3 = new Curriculum("Benja", "Perez", "435345345-2", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV");
-        auxSkill.agregarSkill(postulante3.getSkills(), 1, "Python");
-        auxSkill.agregarSkill(postulante3.getSkills(), "SQL", 2);
+        auxSkill.agregarSkill(postulante3.getSkills(), 7, "Python");
+        auxSkill.agregarSkill(postulante3.getSkills(), "SQL", 8);
 
         auxUtil.agregarPostulante(postulante3);
 
-                
+        /*        
         auxUtil.buscarPostulante(postulante1.getRut());
         System.out.println();
         auxUtil.buscarPostulante(postulante2.getRut());
         System.out.println();
         auxUtil.buscarPostulante(postulante3.getRut());
-        System.out.println();
+        System.out.println();*/
         
         auxUtil.mostrarPostulantesPorArea();
         
@@ -73,16 +73,6 @@ public class BolsaTrabajo{
         //aux.buscarPostulante(postulante1.getRut(), mapaPostulantes);
         
         /*
-        
-        LinkedList skillsPostulante2 = new LinkedList();
-        aux.agregarSkill(7, "Publicidad", skillsPostulante2);
-        aux.agregarSkill(skillsPostulante2, "Photoshop", 8);
-        
-        Curriculum postulante2 = aux.crearPostulante("Ana", "Gallegos", "5678912-1", "F", 46, "ana.gallegos36@gmail.com", "912345678", skillsPostulante2, 15, "PUCV");
-        aux.agregarPostulante(postulante2, areas);
-        aux.buscarPostulante(areas, postulante2.getRut());
-        System.out.println();
-        
         aux.buscarPostulante(areas, "abc"); //Si se busca un postulante no existente
         System.out.println();*/
 

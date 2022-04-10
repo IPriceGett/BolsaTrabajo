@@ -69,12 +69,42 @@ public class Utilidades {
         }
    
         Utilidades auxUtil = new Utilidades();
+        Area area;
+        LinkedList listaSkillsP = postulante.getSkills();
+        LinkedList listaSkillsA;
+        Skill skillP;
+        Skill skillA;
+        LinkedList listaPostulantes;
         
         auxUtil.calcularPuntaje(postulante);
         
-        LinkedList listaPostulantes = listaAreas.get(0).getPostulantes();
-        listaPostulantes.add(postulante);
-        Collections.sort(listaPostulantes, new compPuntaje());
+        for (int i = 0; i < listaAreas.size(); i++){
+            
+            area = (Area) listaAreas.get(i);
+            listaSkillsA = area.getSkills();
+            
+            for (int j = 0; j < listaSkillsA.size(); j++){
+                
+                skillA = (Skill) listaSkillsA.get(j);
+                
+                for (int k = 0; k < listaSkillsP.size(); k++){
+                    
+                    skillP = (Skill) listaSkillsP.get(k);
+                    
+                    if (skillP.getId() == skillA.getId()){
+                        
+                        listaPostulantes = area.getPostulantes();
+                        listaPostulantes.add(postulante);
+                        Collections.sort(listaPostulantes, new compPuntaje());
+                        
+                        break;
+                    }
+                    
+                    break;
+                }
+            }
+        }
+    
         
         mapaPostulantes.put(postulante.getRut(), postulante);
         
@@ -160,12 +190,22 @@ public class Utilidades {
     }
     
     public void mostrarPostulantesPorArea(){
-        LinkedList aux = listaAreas.get(0).getPostulantes();
+        LinkedList aux;
         Curriculum postulante;
-        for (int i = 0; i < aux.size(); i++){
-            postulante = (Curriculum)aux.get(i);
-            System.out.println(postulante.getNombre());
+        
+        for (int i = 0; i < listaAreas.size(); i++){
+            
+            System.out.println(listaAreas.get(i).getNombre());
+            aux = listaAreas.get(i).getPostulantes();
+            
+            for (int j = 0; j < aux.size(); j++){
+                
+                postulante = (Curriculum)aux.get(j);
+                System.out.println(postulante.getNombre());
+            }
         }
+         
+  
     }
 
 }
