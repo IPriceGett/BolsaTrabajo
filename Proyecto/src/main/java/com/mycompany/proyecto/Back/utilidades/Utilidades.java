@@ -114,19 +114,20 @@ public class Utilidades {
         mapaPostulantes.put(postulante.getRut(), postulante);
         
         System.out.println("Postulante añadido.");
+        //System.out.println();
     }
     
-    public void agregarInputUsuario(){
+    public void agregarPostulanteUsuario(){
         
         Scanner scn = new Scanner(System.in);
         Curriculum postulante = new Curriculum();
         
         System.out.println("Por favor ingrese los siguientes datos del postulante: ");
-        System.out.println("Nombre: ");
+        System.out.println("Nombre(s): ");
         postulante.setNombre(scn.nextLine());
-        System.out.println("Apellido: ");
+        System.out.println("Apellido(s): ");
         postulante.setApellido(scn.nextLine());
-        System.out.println("RUT: ");
+        System.out.println("RUT (sin puntos y con guión): ");
         postulante.setRut(scn.nextLine());
         System.out.println("Genero: ");
         postulante.setGenero(scn.nextLine());
@@ -176,7 +177,7 @@ public class Utilidades {
         }
     }
 }
-    public void calcularPuntaje(Curriculum postulante){ // random por mientras
+    public void calcularPuntaje(Curriculum postulante){ // Por el momento asigna un numero random, se tiene que crear formula para calcular puntaje
         int puntaje = (int) Math.floor(Math.random()*(100-1+1)+1);
         postulante.setPuntaje(puntaje);
     }
@@ -223,17 +224,23 @@ public class Utilidades {
         
         for (int i = 0; i < listaAreas.size(); i++){
             
-            System.out.println(listaAreas.get(i).getNombre());
+            System.out.println(listaAreas.get(i).getNombre().toUpperCase());
             listaPost = listaAreas.get(i).getPostulantes();
+            
+            if(listaPost.isEmpty()){
+                 System.out.println("Esta área no tiene postulantes.");
+                 continue;
+            }
+            
+            System.out.println("Nombre completo     RUT     Puntaje de postulacion");
             
             for (int j = 0; j < listaPost.size(); j++){
                 
                 postulante = (Curriculum) listaPost.get(j);
-                System.out.println(postulante.getNombre());
+                System.out.println(postulante.getNombre() + " " + postulante.getApellido() + " | " + postulante.getRut() + " | " + postulante.getPuntaje());
             }
         }
-         
-  
+
     }
     
      //Relacionado a trabajadores
@@ -278,6 +285,9 @@ public class Utilidades {
     
     public void menu(){
         
+        System.out.println("BOLSA DE TRABAJO");
+        System.out.println();
+                
         int opcion;
          do{
                   mostrarOpciones();
@@ -291,12 +301,13 @@ public class Utilidades {
                 
                   case 1:
        
-                    agregarInputUsuario();
+                    agregarPostulanteUsuario();
+                    
                     break;
                   
                   case 2:
         
-                    System.out.println("Ingrese el rut del postulante a buscar");
+                    System.out.println("Ingrese el rut del postulante a buscar (sin puntos y con guión): ");
 
                     String rut = scn.nextLine();
 
@@ -305,13 +316,13 @@ public class Utilidades {
                     break;
                   
                   case 3:
-                      
+                    
+                    mostrarPostulantesPorArea();
+                    
                     break;
                   
-                  case 4:
-                      
-                   mostrarPostulantesPorArea();
-                   
+                  case 5:
+         
                    break;
                   
                   case 0:
@@ -322,17 +333,18 @@ public class Utilidades {
                   return;
                     
                   }
-                  
-                  } while(opcion != 0);
+               System.out.println();   
+              } while(opcion != 0);
          }
 
     public void mostrarOpciones(){
-        System.out.println("---------------------------------------");
-        System.out.println("Elija una opcion para continuar");
+       
+        System.out.println("Elija una opcion para continuar: ");
         System.out.println("1.- Agregar postulante");
-        System.out.println("2.- Mostrar postulante");
-        System.out.println("3.- Agregar area");
-        System.out.println("4.- Mostrar datos area:");
+        System.out.println("2.- Buscar postulante");
+        System.out.println("3.- Mostrar todos los postulantes");
+        System.out.println("4.- Agregar área");
+        System.out.println("5.- Mostrar datos área:");
         System.out.println("0.- Salir.");
     }
 }
