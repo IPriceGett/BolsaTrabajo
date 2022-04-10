@@ -11,6 +11,7 @@ import com.mycompany.proyecto.Back.utilidades.*;
 
 public class BolsaTrabajo{
     public static void main(String[] args){
+        
  
         Skill auxSkill = new Skill();
         Utilidades auxUtil = new Utilidades();
@@ -55,8 +56,8 @@ public class BolsaTrabajo{
         auxSkill.agregarSkill(postulante3.getSkills(), "SQL", 8);
 
         auxUtil.agregarPostulante(postulante3);
-        auxUtil.agregarInputUsuario();
-
+        //auxUtil.agregarInputUsuario();
+         auxUtil.menu();
         /*        
         auxUtil.buscarPostulante(postulante1.getRut());
         System.out.println();

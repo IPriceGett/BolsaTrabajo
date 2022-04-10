@@ -119,7 +119,7 @@ public class Utilidades {
         
         Scanner scn = new Scanner(System.in);
         Curriculum postulante = new Curriculum();
-        /*
+        
         System.out.println("Por favor ingrese los siguientes datos del postulante: ");
         System.out.println("Nombre: ");
         postulante.setNombre(scn.nextLine());
@@ -140,15 +140,15 @@ public class Utilidades {
         postulante.setAñosExperiencia(scn.nextInt());
         scn.nextLine();
         System.out.println("Institucion Educacional: ");
-        postulante.setInstituto(scn.nextLine());*/
-        
+        postulante.setInstituto(scn.nextLine());
+        /*
         String aux = "aux";
         System.out.println("De la siguiente lista, ingrese, una por una, las skills que maneja. Cuando haya terminado, ingrese '0' ");
         this.mostrarTodasSkills();
-        
+        /*
         while (!aux.equals("0")){
             aux = scn.nextLine();
-        }
+        }*/
         
         LinkedList<Skill> skills = new LinkedList<>();
         Skill auxSkill = new Skill();
@@ -273,5 +273,53 @@ public class Utilidades {
         }
     }
     
+    public void menu(){
+        
+         do{
+                  printarOpciones();
+                  Scanner option = new Scanner(System.in);
+                  int numero=option.nextInt();
+                  option.nextLine();
+                  switch(numero){
+                
+                  case 1:
+       
+                  agregarInputUsuario();
+                  break;
+                  
+                  case 2:
+        
+                  agregarInputUsuario(); 
+                  break;
+                  
+                  case 3:
+                      
+                  System.out.println("Ingrese el rut del postulante a buscar");
+                  
+                  String rut = option.nextLine();
+                  
+                  this.buscarPostulante(rut);      
+                  
+                  break;
+                  
+                  case 0:
+                  System.out.println("Exit");
+                  break;
+                 
+                  default:
+                  return;
+                    
+                  }
+                  
+                  }while(true);
+         }
 
+    public void printarOpciones(){
+        System.out.println("---------------------------------------");
+        System.out.println("Elija una opcion para continuar");
+        System.out.println("1.- Agregar postulante");
+        System.out.println("2.- Mostrar postulante");
+        System.out.println("3.- Agregar area");
+        System.out.println("4.- Mostrar datos area:");
+    }
 }
