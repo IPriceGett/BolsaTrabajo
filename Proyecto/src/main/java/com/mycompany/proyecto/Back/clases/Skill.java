@@ -69,5 +69,9 @@ public class Skill {
         list.add(skill);
     }
     
+    public void agregarSkill(int id){
+        
+    }
+    
     public void eliminarSkill(LinkedList list){}
 }

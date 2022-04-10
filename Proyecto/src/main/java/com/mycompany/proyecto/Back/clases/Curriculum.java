@@ -15,27 +15,27 @@ import java.util.LinkedList;
 public class Curriculum extends Persona {
 
     private LinkedList<Skill> skills; 
-    private int annosExperiencia;
+    private int añosExperiencia;
     private String instituto;
     private int puntaje;
 
-    public Curriculum(int annosExperiencia, String instituto, LinkedList skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
+    public Curriculum(int añosExperiencia, String instituto, LinkedList skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
         super(nombre, apellido, rut, genero, edad, correo, telefono);
-        this.annosExperiencia = annosExperiencia;
+        this.añosExperiencia = añosExperiencia;
         this.instituto = instituto;
         this.skills = skills;
     }
 
     public Curriculum(int annosExperiencia, String instituto, LinkedList skills){
         super();
-        this.annosExperiencia = annosExperiencia;
+        this.añosExperiencia = annosExperiencia;
         this.instituto = instituto;
         this.skills = skills;
     }
 
     public Curriculum(){
         super();
-        this.annosExperiencia = 0;
+        this.añosExperiencia = 0;
         this.instituto = "";
         this.skills = new LinkedList<>();
         this.puntaje = 0;
@@ -43,7 +43,7 @@ public class Curriculum extends Persona {
     
     public Curriculum(String nombre, String apellido, String rut,  String genero, int edad, String correo, String telefono, int annosExperiencia, String instituto){
         super(nombre, apellido, rut, genero, edad, correo, telefono);
-        this.annosExperiencia = annosExperiencia;
+        this.añosExperiencia = annosExperiencia;
         this.instituto = instituto;
         this.skills = new LinkedList<>();
     }
@@ -53,7 +53,7 @@ public class Curriculum extends Persona {
     }
 
     public int getAnnosExperiencia(){
-        return this.annosExperiencia;
+        return this.añosExperiencia;
     }
 
     public LinkedList getSkills(){
@@ -68,8 +68,8 @@ public class Curriculum extends Persona {
         this.instituto = instituto;
     }
 
-    public void setAnnosExperiencia(int annosExperiencia){
-        this.annosExperiencia = annosExperiencia;
+    public void setAñosExperiencia(int añosExperiencia){
+        this.añosExperiencia = añosExperiencia;
     }
 
     public void setSkills(LinkedList skills){

@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 
 public class Utilidades {
@@ -24,6 +25,7 @@ public class Utilidades {
     LinkedList<Area> listaAreas = new LinkedList<>();
 
     public Curriculum crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, LinkedList skills, int experiencia, String instituto){
+        
         Curriculum postulante = new Curriculum();
         postulante.setNombre(nombre);
         postulante.setApellido(apellido);
@@ -33,13 +35,14 @@ public class Utilidades {
         postulante.setCorreo(correo);
         postulante.setTelefono(telefono);
         postulante.setSkills(skills);
-        postulante.setAnnosExperiencia(experiencia);
+        postulante.setAñosExperiencia(experiencia);
         postulante.setInstituto(instituto);
 
         return postulante; 
     }
     
     public Curriculum crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto){
+        
         Curriculum postulante = new Curriculum();
         postulante.setNombre(nombre);
         postulante.setApellido(apellido);
@@ -48,7 +51,7 @@ public class Utilidades {
         postulante.setEdad(edad);
         postulante.setCorreo(correo);
         postulante.setTelefono(telefono);
-        postulante.setAnnosExperiencia(experiencia);
+        postulante.setAñosExperiencia(experiencia);
         postulante.setInstituto(instituto);
         LinkedList<Skill> skills = new LinkedList<>();
         postulante.setSkills(skills);
@@ -58,8 +61,9 @@ public class Utilidades {
     
     //Agregar postulante
     
-    /*A los metodos para agregar postulantes les falta el detalle de que depende de sus skills a cual mapa de la
-    respectiva area es asignado, esto aun no está implementado. 
+    /*Se ha implementado el comparar las skills del postulante con las de cada area, pero, hasta ahora, al encontrar el primer
+      "match", se guarda en esa area. Quizas mas adelante se podria crear una formula para que a diferencia de la version de ahora,
+       quede en el area donde mas skills es comun tenga.
     */
     public void agregarPostulante(Curriculum postulante){
         
@@ -109,7 +113,49 @@ public class Utilidades {
         mapaPostulantes.put(postulante.getRut(), postulante);
         
         System.out.println("Postulante añadido.");
-  
+    }
+    
+    public void agregarInputUsuario(){
+        
+        Scanner scn = new Scanner(System.in);
+        Curriculum postulante = new Curriculum();
+        /*
+        System.out.println("Por favor ingrese los siguientes datos del postulante: ");
+        System.out.println("Nombre: ");
+        postulante.setNombre(scn.nextLine());
+        System.out.println("Apellido: ");
+        postulante.setApellido(scn.nextLine());
+        System.out.println("RUT: ");
+        postulante.setRut(scn.nextLine());
+        System.out.println("Genero: ");
+        postulante.setGenero(scn.nextLine());
+        System.out.println("Edad: ");
+        postulante.setEdad(scn.nextInt());
+        scn.nextLine();
+        System.out.println("Correo: ");
+        postulante.setCorreo(scn.nextLine());
+        System.out.println("Telefono: ");
+        postulante.setTelefono(scn.nextLine());
+        System.out.println("Años de experiencia: ");
+        postulante.setAñosExperiencia(scn.nextInt());
+        scn.nextLine();
+        System.out.println("Institucion Educacional: ");
+        postulante.setInstituto(scn.nextLine());*/
+        
+        String aux = "aux";
+        System.out.println("De la siguiente lista, ingrese, una por una, las skills que maneja. Cuando haya terminado, ingrese '0' ");
+        this.mostrarTodasSkills();
+        
+        while (!aux.equals("0")){
+            aux = scn.nextLine();
+        }
+        
+        LinkedList<Skill> skills = new LinkedList<>();
+        Skill auxSkill = new Skill();
+        auxSkill.agregarSkill("Python", 1, skills);
+        postulante.setSkills(skills);
+        
+        this.agregarPostulante(postulante);   
     }
     
     class compPuntaje implements Comparator<Curriculum>{	 
@@ -173,7 +219,7 @@ public class Utilidades {
         System.out.println("Correo: " + postulante.getCorreo());
         System.out.println("Telefono: " + postulante.getTelefono());
         System.out.println("Años de experiencia: " + postulante.getAnnosExperiencia());
-        System.out.println("Instituto: " + postulante.getInstituto());
+        System.out.println("Institucion Educacional: " + postulante.getInstituto());
         System.out.println("Puntaje: " + postulante.getPuntaje());
 
         LinkedList skills = postulante.getSkills();
@@ -185,27 +231,47 @@ public class Utilidades {
         System.out.println();
     }
     
-    public void agregarArea(Area area){
-        listaAreas.add(area);
-    }
-    
     public void mostrarPostulantesPorArea(){
-        LinkedList aux;
+        LinkedList listaPost;
         Curriculum postulante;
         
         for (int i = 0; i < listaAreas.size(); i++){
             
             System.out.println(listaAreas.get(i).getNombre());
-            aux = listaAreas.get(i).getPostulantes();
+            listaPost = listaAreas.get(i).getPostulantes();
             
-            for (int j = 0; j < aux.size(); j++){
+            for (int j = 0; j < listaPost.size(); j++){
                 
-                postulante = (Curriculum)aux.get(j);
+                postulante = (Curriculum) listaPost.get(j);
                 System.out.println(postulante.getNombre());
             }
         }
          
   
     }
+
+    // Relacionados a Areas
+
+    public void agregarArea(Area area){
+        listaAreas.add(area);
+    }
+    
+    public void mostrarTodasSkills(){
+    
+        LinkedList listaSkills;
+        Skill skill;
+        
+        for (int i = 0; i < listaAreas.size(); i++){
+            
+            listaSkills = listaAreas.get(i).getSkills();
+            
+            for (int j = 0; j < listaSkills.size(); j++){
+                
+                skill = (Skill) listaSkills.get(j);
+                System.out.println(skill.getNombre());
+            }
+        }
+    }
+    
 
 }

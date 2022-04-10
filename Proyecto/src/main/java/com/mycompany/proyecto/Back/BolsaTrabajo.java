@@ -8,9 +8,6 @@ package com.mycompany.proyecto.Back;
 import com.mycompany.proyecto.Back.clases.*;
 import com.mycompany.proyecto.Back.utilidades.*;
 
-//import java.util.HashMap;
-//import java.util.LinkedList;
-
 
 public class BolsaTrabajo{
     public static void main(String[] args){
@@ -58,6 +55,7 @@ public class BolsaTrabajo{
         auxSkill.agregarSkill(postulante3.getSkills(), "SQL", 8);
 
         auxUtil.agregarPostulante(postulante3);
+        auxUtil.agregarInputUsuario();
 
         /*        
         auxUtil.buscarPostulante(postulante1.getRut());
