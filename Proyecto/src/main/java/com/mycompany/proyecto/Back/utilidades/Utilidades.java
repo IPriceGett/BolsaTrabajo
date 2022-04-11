@@ -21,8 +21,8 @@ import java.util.Scanner;
 
 public class Utilidades {
     
-    HashMap<String, Curriculum> mapaPostulantes = new HashMap<>();
-    LinkedList<Area> listaAreas = new LinkedList<>();
+    HashMap<String, Curriculum> mapaPostulantes = new HashMap<>(); // Listo agregar y mostrar
+    LinkedList<Area> listaAreas = new LinkedList<>(); //Agregar y mostrar listo
 
     public Curriculum crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, LinkedList skills, int experiencia, String instituto){
         
@@ -264,6 +264,35 @@ public class Utilidades {
         listaAreas.add(area);
     }
     
+    public void agregarAreaUsuario(){
+        
+        Scanner scn = new Scanner(System.in);
+        
+        System.out.println("Ingrese el nombre de la nueva área: "); //Falta comprobar que no este repetida
+        String nombre = scn.nextLine();
+        System.out.println("Ingrese su maximo total de trabajadores: ");
+        int total = scn.nextInt();
+        scn.nextLine();
+        
+        Skill auxSkill = new Skill();
+        LinkedList<Skill> lista;
+        lista = new LinkedList<>();
+        String nombreSkill = "aux";
+        
+        System.out.println("Ingrese, una por una, las skills necesarias para trabajar en esta área. Para terminar ingrese '0'.");
+        
+        while (!nombreSkill.equals("0")){
+            nombreSkill = scn.nextLine();
+            if (nombreSkill.equals("0")) break;
+            auxSkill.agregarSkill(nombreSkill, lista);
+        }
+        
+        Area nueva = new Area(nombre, total, lista);
+        listaAreas.add(nueva);
+        
+        System.out.println("Area agregada correctamente.");
+    }
+    
     public void mostrarTodasSkills(){
     
         LinkedList listaSkills;
@@ -279,6 +308,65 @@ public class Utilidades {
                 System.out.println(skill.getNombre());
             }
         }
+    }
+    
+    public void mostrarAreas(){
+        System.out.println("Las áreas existentes son: ");
+        System.out.println();
+        for (int i = 0; i < listaAreas.size(); i++){
+            System.out.println(listaAreas.get(i).getNombre());
+        }    
+    }
+    
+    public void mostrarSkillsPorArea(){
+    
+        LinkedList listaSkills;
+        Skill skill;
+        
+        for (int i = 0; i < listaAreas.size(); i++){
+            
+            System.out.println(listaAreas.get(i).getNombre().toUpperCase());
+            System.out.println();
+            
+            listaSkills = listaAreas.get(i).getSkills();
+            
+            for (int j = 0; j < listaSkills.size(); j++){
+                
+                skill = (Skill) listaSkills.get(j);
+                System.out.println(skill.getNombre());
+            }
+            System.out.println();
+        }
+    }
+    
+    public void agregarSkillAreaUsuario(){
+        
+        System.out.println("De las áreas existentes ingrese el área a la que desea agregar una nueva skill.");
+        mostrarAreas();
+        Scanner scn = new Scanner(System.in);
+        String nombreArea = scn.nextLine();
+        boolean flag = false;
+        
+        for (int i = 0; i < listaAreas.size(); i++){
+            
+            if(nombreArea.equals(listaAreas.get(i).getNombre())){
+                
+                LinkedList lista = listaAreas.get(i).getSkills();
+                
+                System.out.println("Ingrese el nombre de la nueva skill: ");
+                
+                String nombreSkill = scn.nextLine();
+                Skill skillAux = new Skill();
+                
+                skillAux.agregarSkill(lista, nombreSkill, i+2);
+                System.out.println("Skill agregada correctamente.");
+                flag = true;
+                break;
+            }       
+        }
+        if (flag == false){
+            System.out.println("Area inexsistente.");
+        } 
     }
     
     // Relacionadas a Menu
@@ -321,9 +409,25 @@ public class Utilidades {
                     
                     break;
                   
-                  case 5:
-         
+                  case 4:
+                      
+                   agregarAreaUsuario();
                    break;
+                   
+                  case 5:
+                      
+                   mostrarAreas();
+                   break;
+                  
+                  case 6:
+                      
+                   agregarSkillAreaUsuario();
+                   break;
+                   
+                  case 7:
+                      
+                   mostrarSkillsPorArea();
+                   break; 
                   
                   case 0:
                     System.out.println("Exit");
@@ -340,11 +444,13 @@ public class Utilidades {
     public void mostrarOpciones(){
        
         System.out.println("Elija una opcion para continuar: ");
-        System.out.println("1.- Agregar postulante");
-        System.out.println("2.- Buscar postulante");
-        System.out.println("3.- Mostrar todos los postulantes");
+        System.out.println("1.- Agregar postulante"); // Agrega a mapa de todos los postulantes y a lista de postulantes del area correspondiente
+        System.out.println("2.- Buscar postulante"); //Busca postulante en mapa
+        System.out.println("3.- Mostrar todos los postulantes"); //Recorre la lista de areas, y luego la lista de postulantes de cada una
         System.out.println("4.- Agregar área");
-        System.out.println("5.- Mostrar datos área:");
-        System.out.println("0.- Salir.");
+        System.out.println("5.- Mostrar todas las áreas");
+        System.out.println("6.- Agregar skill a área");
+        System.out.println("7.- Mostrar las skills de cada área");
+        System.out.println("0.- Salir");
     }
 }

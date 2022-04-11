@@ -18,9 +18,9 @@ public class Area {
     private String nombre;
     private int vacantes;
     private int total;
-    private LinkedList<Skill> skills;
+    private LinkedList<Skill> skills; //  Listo agregar y mostrar
     private HashMap contratados; //mapa 
-    private LinkedList<Curriculum> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion
+    private LinkedList<Curriculum> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion. Listo agregar y mostrar
 
      public Area(){
         this.nombre = "";
@@ -45,6 +45,15 @@ public class Area {
         this.vacantes = vacantes;
         this.total = total;
         this.skills = new LinkedList<>();
+        this.contratados = new HashMap();
+        this.postulantes = new LinkedList<>();  
+    }
+    
+    public Area(String nombre, int total, LinkedList lista){
+        this.nombre = nombre;
+        this.vacantes = total;
+        this.total = total;
+        this.skills = lista;
         this.contratados = new HashMap();
         this.postulantes = new LinkedList<>();  
     }
