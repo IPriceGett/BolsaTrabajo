@@ -18,9 +18,9 @@ public class Area {
     private String nombre;
     private int vacantes;
     private int total;
-    private LinkedList<Skill> skills; //  Listo agregar y mostrar
+    private LinkedList<Skill> skills; //  falta eliminar y editar
     private HashMap contratados; //mapa 
-    private LinkedList<Curriculum> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion. Listo agregar y mostrar
+    private LinkedList<Curriculum> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion. listo eliminar falta editar
 
     public Area(){
         this.nombre = "";

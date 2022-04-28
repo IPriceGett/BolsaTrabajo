@@ -21,8 +21,8 @@ import java.util.Scanner;
 
 public class Utilidades {
     
-    HashMap<String, Curriculum> mapaPostulantes = new HashMap<>(); // Listo agregar y mostrar
-    LinkedList<Area> listaAreas = new LinkedList<>(); //Agregar y mostrar listo
+    HashMap<String, Curriculum> mapaPostulantes = new HashMap<>(); // listo eliminar falta editar
+    LinkedList<Area> listaAreas = new LinkedList<>(); //listo eliminar falta editar
 
     public Curriculum crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, LinkedList skills, int experiencia, String instituto){
         
@@ -249,8 +249,9 @@ public class Utilidades {
 
     }
     
-     //Relacionado a trabajadores
-     
+    //Relacionado a trabajadores
+    //Aun no implementado
+    /*
     public void agregarTrabajador(Curriculum trabajador){
         String rut = trabajador.getRut();
          if (mapaPostulantes.containsKey(rut)){
@@ -262,7 +263,7 @@ public class Utilidades {
     
     public void eliminarTrabajador(String rut){
         mapaPostulantes.remove(rut);
-    }
+    }*/
 
     // Relacionados a Areas
 
@@ -378,6 +379,44 @@ public class Utilidades {
             System.out.println("Area inexsistente.");
         } 
     }
+
+    public void eliminarArea(){
+
+        if(listaAreas.isEmpty()){
+            System.out.println("Aún no existen areas.");
+            return;
+        }
+
+        Scanner scn = new Scanner(System.in);
+        String eliminar;
+        LinkedList<Curriculum> listaPost;
+
+        System.out.println("De las siguientes areas seleccione la que desea eliminar:");
+
+        mostrarAreas();
+
+        eliminar = scn.nextLine();
+
+        for (int i = 0; i < listaAreas.size(); i++){
+
+            if(eliminar.equals(listaAreas.get(i).getNombre())){
+
+                listaPost = listaAreas.get(i).getPostulantes();
+
+                if(!listaPost.isEmpty()){
+
+                    for (int j = 0; j < listaPost.size(); j++){
+
+                        mapaPostulantes.remove(listaPost.get(j).getRut()); 
+                    }
+                }
+
+                listaAreas.remove(i);
+                System.out.println("Área eliminada correctamente.");
+                return;
+            }  
+        }
+    }
     
     // Relacionadas a Menu
     
@@ -449,6 +488,13 @@ public class Utilidades {
                         break; 
                     }
 
+                case 8:
+                    {
+                        eliminarArea();
+
+                        break; 
+                    }
+
                     case 0:
                     {
                         System.out.println("Exit");
@@ -475,6 +521,7 @@ public class Utilidades {
         System.out.println("5.- Mostrar todas las áreas");
         System.out.println("6.- Agregar skill a área");
         System.out.println("7.- Mostrar las skills de cada área");
+        System.out.println("8.- Eliminar área");
         System.out.println("0.- Salir");
     }
 }
