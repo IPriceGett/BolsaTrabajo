@@ -17,6 +17,7 @@ public class BolsaTrabajo{
        
         //Inicializando areas de prueba
         
+        
         Area informatica = new Area("Informatica", 10, 10);
         Area finanzas = new Area("Finanzas", 10, 10);
         Area marketing = new Area("Marketing", 10, 10);

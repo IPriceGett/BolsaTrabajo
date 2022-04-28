@@ -76,8 +76,8 @@ public class Utilidades {
    
         Utilidades auxUtil = new Utilidades();
         Area area;
-        LinkedList listaSkillsP = postulante.getSkills();
-        LinkedList listaSkillsA;
+        LinkedList<Skill> listaSkillsP = postulante.getSkills();
+        LinkedList<Skill> listaSkillsA;
         Skill skillP;
         Skill skillA;
         LinkedList listaPostulantes;
@@ -86,16 +86,16 @@ public class Utilidades {
         
         for (int i = 0; i < listaAreas.size(); i++){
             
-            area = (Area) listaAreas.get(i);
+            area = listaAreas.get(i);
             listaSkillsA = area.getSkills();
             
             for (int j = 0; j < listaSkillsA.size(); j++){
                 
-                skillA = (Skill) listaSkillsA.get(j);
+                skillA = listaSkillsA.get(j);
                 
                 for (int k = 0; k < listaSkillsP.size(); k++){
                     
-                    skillP = (Skill) listaSkillsP.get(k);
+                    skillP = listaSkillsP.get(k);
                     
                     if (skillP.getNombre().equals(skillA.getNombre())){
                         
@@ -193,7 +193,7 @@ public class Utilidades {
     
      public void buscarPostulante(String rut){
         
-         if (!mapaPostulantes.containsKey(rut)){
+        if (!mapaPostulantes.containsKey(rut)){
             System.out.println("Postulante no encontrado.");
             return;
         }
@@ -209,17 +209,23 @@ public class Utilidades {
         System.out.println("Institucion Educacional: " + postulante.getInstituto());
         System.out.println("Puntaje: " + postulante.getPuntaje());
 
-        LinkedList skills = postulante.getSkills();
+        LinkedList<Skill> skills = postulante.getSkills();
         System.out.print("Skills: ");
         for (int i = 0; i < skills.size(); i++){
-            Skill skill = (Skill) skills.get(i);
+            Skill skill = skills.get(i);
             System.out.print(skill.getNombre() + " ");
         }
         System.out.println();
     }
     
     public void mostrarPostulantesPorArea(){
-        LinkedList listaPost;
+        if (mapaPostulantes.isEmpty())
+        {
+            System.out.println("Aún no se ha agregado ningún postulante.");
+            return;
+        }
+
+        LinkedList<Curriculum> listaPost;
         Curriculum postulante;
         
         for (int i = 0; i < listaAreas.size(); i++){
@@ -236,7 +242,7 @@ public class Utilidades {
             
             for (int j = 0; j < listaPost.size(); j++){
                 
-                postulante = (Curriculum) listaPost.get(j);
+                postulante = listaPost.get(j);
                 System.out.println(postulante.getNombre() + " " + postulante.getApellido() + " | " + postulante.getRut() + " | " + postulante.getPuntaje());
             }
         }
@@ -275,8 +281,7 @@ public class Utilidades {
         scn.nextLine();
         
         Skill auxSkill = new Skill();
-        LinkedList<Skill> lista;
-        lista = new LinkedList<>();
+        LinkedList<Skill> lista = new LinkedList<>();
         String nombreSkill = "aux";
         
         System.out.println("Ingrese, una por una, las skills necesarias para trabajar en esta área. Para terminar ingrese '0'.");
@@ -295,7 +300,7 @@ public class Utilidades {
     
     public void mostrarTodasSkills(){
     
-        LinkedList listaSkills;
+        LinkedList<Skill> listaSkills;
         Skill skill;
         
         for (int i = 0; i < listaAreas.size(); i++){
@@ -304,13 +309,18 @@ public class Utilidades {
             
             for (int j = 0; j < listaSkills.size(); j++){
                 
-                skill = (Skill) listaSkills.get(j);
+                skill = listaSkills.get(j);
                 System.out.println(skill.getNombre());
             }
         }
     }
     
     public void mostrarAreas(){
+        if(listaAreas.isEmpty())
+        {
+            System.out.println("Aún no se ha agregado ninguna área.");
+            return;
+        }
         System.out.println("Las áreas existentes son: ");
         System.out.println();
         for (int i = 0; i < listaAreas.size(); i++){
@@ -320,7 +330,7 @@ public class Utilidades {
     
     public void mostrarSkillsPorArea(){
     
-        LinkedList listaSkills;
+        LinkedList<Skill> listaSkills;
         Skill skill;
         
         for (int i = 0; i < listaAreas.size(); i++){
@@ -332,7 +342,7 @@ public class Utilidades {
             
             for (int j = 0; j < listaSkills.size(); j++){
                 
-                skill = (Skill) listaSkills.get(j);
+                skill = listaSkills.get(j);
                 System.out.println(skill.getNombre());
             }
             System.out.println();
@@ -378,67 +388,81 @@ public class Utilidades {
                 
         int opcion;
          do{
-                  mostrarOpciones();
+                mostrarOpciones();
                   
-                  Scanner scn = new Scanner(System.in);
-                  
-                  opcion = scn.nextInt();
-                  scn.nextLine();
-                  
-                  switch(opcion){
+                Scanner scn = new Scanner(System.in);
+
+                opcion = scn.nextInt();
+                scn.nextLine();
+
+                switch(opcion){
+
+                    case 1:
+                    {
+                        agregarPostulanteUsuario();
+
+                        break;
+                    }
+
+                    case 2:
+                    {
+                        System.out.println("Ingrese el rut del postulante a buscar (sin puntos y con guión): ");
+                        String rut = scn.nextLine();
+
+                        buscarPostulante(rut);  
+
+                      break;
+                    }
+
+                    case 3:
+                    {
+                        mostrarPostulantesPorArea();
+
+                        break;
+                    }
+
+                    case 4:
+                    {
+                        agregarAreaUsuario();
+                        
+                        break;
+                    }
+
+                    case 5:
+                    {
+                        mostrarAreas();
+                        
+                        break;
+                    }
+
+                    case 6:
+                    {
+                        agregarSkillAreaUsuario();
+
+                        break;
+                    }
+
+                    case 7:
+                    {
+                        mostrarSkillsPorArea();
+
+                        break; 
+                    }
+
+                    case 0:
+                    {
+                        System.out.println("Exit");
+
+                        break;
+                    }
+
+                    default:
+                        return;
+                }
                 
-                  case 1:
-       
-                    agregarPostulanteUsuario();
-                    
-                    break;
-                  
-                  case 2:
-        
-                    System.out.println("Ingrese el rut del postulante a buscar (sin puntos y con guión): ");
-
-                    String rut = scn.nextLine();
-
-                    buscarPostulante(rut);  
-
-                    break;
-                  
-                  case 3:
-                    
-                    mostrarPostulantesPorArea();
-                    
-                    break;
-                  
-                  case 4:
-                      
-                   agregarAreaUsuario();
-                   break;
-                   
-                  case 5:
-                      
-                   mostrarAreas();
-                   break;
-                  
-                  case 6:
-                      
-                   agregarSkillAreaUsuario();
-                   break;
-                   
-                  case 7:
-                      
-                   mostrarSkillsPorArea();
-                   break; 
-                  
-                  case 0:
-                    System.out.println("Exit");
-                    break;
-                 
-                  default:
-                  return;
-                    
-                  }
-               System.out.println();   
-              } while(opcion != 0);
+               System.out.println(); 
+               
+            } while(opcion != 0);
          }
 
     public void mostrarOpciones(){

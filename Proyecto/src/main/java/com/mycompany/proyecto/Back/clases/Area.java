@@ -22,7 +22,7 @@ public class Area {
     private HashMap contratados; //mapa 
     private LinkedList<Curriculum> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion. Listo agregar y mostrar
 
-     public Area(){
+    public Area(){
         this.nombre = "";
         this.vacantes = 1;
         this.total = 1;
