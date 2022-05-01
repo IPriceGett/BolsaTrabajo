@@ -13,15 +13,15 @@ import com.mycompany.proyecto.Back.clases.*;
  */
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Comparator;
 
 
 public class Utilidades {
     
-    HashMap<String, Curriculum> mapaPostulantes = new HashMap<>(); // listo eliminar falta editar
+    HashMap<String, Curriculum> mapaPostulantes = new HashMap<>(); // listo eliminar listo editar
     LinkedList<Area> listaAreas = new LinkedList<>(); //listo eliminar falta editar
 
     public Curriculum crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, LinkedList skills, int experiencia, String instituto){
@@ -75,6 +75,7 @@ public class Utilidades {
         }
    
         Utilidades auxUtil = new Utilidades();
+        Comparator<Curriculum> comparador = new ComparadorPuntaje();
         Area area;
         LinkedList<Skill> listaSkillsP = postulante.getSkills();
         LinkedList<Skill> listaSkillsA;
@@ -101,7 +102,7 @@ public class Utilidades {
                         
                         listaPostulantes = area.getPostulantes();
                         listaPostulantes.add(postulante);
-                        Collections.sort(listaPostulantes, new compPuntaje());
+                        Collections.sort(listaPostulantes, comparador);
                         
                         break;
                     }
@@ -165,7 +166,7 @@ public class Utilidades {
         //Agregar postulante recien creado
         this.agregarPostulante(postulante);   
     }
-    
+    /*
     class compPuntaje implements Comparator<Curriculum>{	 
     @Override
     public int compare(Curriculum postulante1, Curriculum postulante2) {
@@ -174,8 +175,8 @@ public class Utilidades {
         } else {
             return -1;
         }
-    }
-}
+    }*/
+
     public void calcularPuntaje(Curriculum postulante){ // Por el momento asigna un numero random, se tiene que crear formula para calcular puntaje
         int puntaje = (int) Math.floor(Math.random()*(100-1+1)+1);
         postulante.setPuntaje(puntaje);

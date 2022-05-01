@@ -17,7 +17,6 @@ public class BolsaTrabajo{
        
         //Inicializando areas de prueba
         
-        
         Area informatica = new Area("Informatica", 10, 10);
         Area finanzas = new Area("Finanzas", 10, 10);
         Area marketing = new Area("Marketing", 10, 10);
@@ -42,15 +41,15 @@ public class BolsaTrabajo{
         System.out.println("Agregando postulantes de prueba.");
         System.out.println();
         
-        Curriculum postulante1 = new Curriculum("Juan", "Perez", "9876543-2", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV");
+        Curriculum postulante1 = new Curriculum("Juanino", "Perezinho", "9876543-2", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV");
         auxSkill.agregarSkill(postulante1.getSkills(), 1, "Python");
         auxSkill.agregarSkill(postulante1.getSkills(), "SQL", 2);
          
         auxUtil.agregarPostulante(postulante1);
         
         Curriculum postulante2 = new Curriculum("Catalina", "Herrera", "20234456-6", "F", 35, "cata.herrera35@gmail.com", "988776655", 12, "USM");
-        auxSkill.agregarSkill(postulante2.getSkills(), 5, "Contador");
-        auxSkill.agregarSkill(postulante2.getSkills(), "Excel", 6);
+        auxSkill.agregarSkill(postulante2.getSkills(), 1, "Python");
+        auxSkill.agregarSkill(postulante2.getSkills(), "SQL", 2);
 
         auxUtil.agregarPostulante(postulante2);
         
