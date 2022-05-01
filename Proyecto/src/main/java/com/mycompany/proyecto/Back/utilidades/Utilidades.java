@@ -114,7 +114,6 @@ public class Utilidades {
         mapaPostulantes.put(postulante.getRut(), postulante);
         
         System.out.println("Postulante añadido.");
-        //System.out.println();
     }
     
     public void agregarPostulanteUsuario(){
@@ -191,11 +190,11 @@ public class Utilidades {
         System.out.println("Postulante eliminado.");
     }
     
-     public void buscarPostulante(String rut){
+     public boolean buscarPostulante(String rut){
         
         if (!mapaPostulantes.containsKey(rut)){
             System.out.println("Postulante no encontrado.");
-            return;
+            return false;
         }
         
         Curriculum postulante = (Curriculum) mapaPostulantes.get(rut);
@@ -216,6 +215,8 @@ public class Utilidades {
             System.out.print(skill.getNombre() + " ");
         }
         System.out.println();
+
+        return true;
     }
     
     public void mostrarPostulantesPorArea(){
@@ -247,6 +248,19 @@ public class Utilidades {
             }
         }
 
+    }
+
+    public void editarPostulante(){
+        Scanner scn = new Scanner(System.in);
+        String rut;
+
+        System.out.println("Ingrese el rut del postulante a editar: ");
+        rut = scn.nextLine();
+
+        if(this.buscarPostulante(rut)){
+            this.eliminarPostulante(rut);
+            this.agregarPostulanteUsuario();
+        }
     }
     
     //Relacionado a trabajadores
@@ -488,9 +502,16 @@ public class Utilidades {
                         break; 
                     }
 
-                case 8:
+                    case 8:
                     {
                         eliminarArea();
+
+                        break; 
+                    }
+
+                    case 9:
+                    {
+                        editarPostulante();
 
                         break; 
                     }
@@ -522,6 +543,7 @@ public class Utilidades {
         System.out.println("6.- Agregar skill a área");
         System.out.println("7.- Mostrar las skills de cada área");
         System.out.println("8.- Eliminar área");
+        System.out.println("9.- Editar postulante");
         System.out.println("0.- Salir");
     }
 }

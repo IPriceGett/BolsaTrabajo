@@ -19,15 +19,15 @@ public class Area {
     private int vacantes;
     private int total;
     private LinkedList<Skill> skills; //  falta eliminar y editar
-    private HashMap contratados; //mapa 
-    private LinkedList<Curriculum> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion. listo eliminar falta editar
+    //private HashMap contratados; //mapa 
+    private LinkedList<Curriculum> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion. listo eliminar listo editar
 
     public Area(){
         this.nombre = "";
         this.vacantes = 1;
         this.total = 1;
         this.skills = new LinkedList<>();
-        this.contratados = new HashMap();
+        //this.contratados = new HashMap();
         this.postulantes = new LinkedList<>();  
     }
 
@@ -36,7 +36,7 @@ public class Area {
         this.vacantes = vacantes;
         this.total = total;
         this.skills = skills;
-        this.contratados = contratados;
+        //this.contratados = contratados;
         this.postulantes = postulantes;  
     }
     
@@ -45,7 +45,7 @@ public class Area {
         this.vacantes = vacantes;
         this.total = total;
         this.skills = new LinkedList<>();
-        this.contratados = new HashMap();
+        //this.contratados = new HashMap();
         this.postulantes = new LinkedList<>();  
     }
     
@@ -54,7 +54,7 @@ public class Area {
         this.vacantes = total;
         this.total = total;
         this.skills = lista;
-        this.contratados = new HashMap();
+        //this.contratados = new HashMap();
         this.postulantes = new LinkedList<>();  
     }
 
@@ -78,10 +78,10 @@ public class Area {
     public LinkedList getPostulantes(){
         return this.postulantes;
     }
-
+    /*
     public HashMap getContratados(){
         return this.contratados;
-    }
+    }*/
 
     public int getPuestosTotales(){
         return this.total;
@@ -98,10 +98,10 @@ public class Area {
     public void setSkills(LinkedList skills){
         this.skills = skills;
     }
-
+    /*
     public void setContratados(HashMap contratados){
         this.contratados = contratados;
-    }
+    }*/
 
     public void setPostulantes(Curriculum postulante){
         this.postulantes.add(postulante);
