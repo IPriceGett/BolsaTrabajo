@@ -107,4 +107,8 @@ public class Area {
         this.postulantes.add(postulante);
     }
 
+    public void removePostulante(Curriculum postulante){
+        this.postulantes.remove(postulante);
+    }
+
 }

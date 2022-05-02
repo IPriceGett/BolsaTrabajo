@@ -188,6 +188,16 @@ public class Utilidades {
         return;
         }
         mapaPostulantes.remove(rut);
+        
+        for(int i = 0; i < listaAreas.size() ; i++){
+           for(int j = 0; j< listaAreas.get(i).getPostulantes().size(); j++){
+                if(listaAreas.get(i).getPostulantes().get(j).getRut() == rut){
+                    listaAreas.get(i).removePostulante(listaAreas.get(i).getPostulantes().get(j));
+                    i = listaAreas.size();
+                    j = listaAreas.get(i).getPostulantes().size();
+                }
+           }
+        }
         System.out.println("Postulante eliminado.");
     }
     
