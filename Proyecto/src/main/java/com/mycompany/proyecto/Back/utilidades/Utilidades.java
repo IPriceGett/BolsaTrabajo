@@ -191,10 +191,9 @@ public class Utilidades {
         
         for(int i = 0; i < listaAreas.size() ; i++){
            for(int j = 0; j< listaAreas.get(i).getPostulantes().size(); j++){
-                if(listaAreas.get(i).getPostulantes().get(j).getRut() == rut){
-                    listaAreas.get(i).removePostulante(listaAreas.get(i).getPostulantes().get(j));
-                    i = listaAreas.size();
-                    j = listaAreas.get(i).getPostulantes().size();
+                if(((Curriculum)listaAreas.get(i).getPostulantes().get(j)).getRut().equals(rut)){
+                    listaAreas.get(i).removePostulante((Curriculum)listaAreas.get(i).getPostulantes().get(j));
+                    return;
                 }
            }
         }
@@ -267,10 +266,47 @@ public class Utilidades {
 
         System.out.println("Ingrese el rut del postulante a editar: ");
         rut = scn.nextLine();
-
-        if(this.buscarPostulante(rut)){
+        if(mapaPostulantes.containsKey(rut)){
             this.eliminarPostulante(rut);
-            this.agregarPostulanteUsuario();
+            Curriculum postulante = new Curriculum();
+            System.out.println("Por favor ingrese los siguientes datos del postulante: ");
+            System.out.println("Nombre(s): ");
+            postulante.setNombre(scn.nextLine());
+            System.out.println("Apellido(s): ");
+            postulante.setApellido(scn.nextLine());
+            System.out.println("RUT (sin puntos y con guión): ");
+            postulante.setRut(scn.nextLine());
+            System.out.println("Genero: ");
+            postulante.setGenero(scn.nextLine());
+            System.out.println("Edad: ");
+            postulante.setEdad(scn.nextInt());
+            scn.nextLine();
+            System.out.println("Correo: ");
+            postulante.setCorreo(scn.nextLine());
+            System.out.println("Telefono: ");
+            postulante.setTelefono(scn.nextLine());
+            System.out.println("Años de experiencia: ");
+            postulante.setAñosExperiencia(scn.nextInt());
+            scn.nextLine();
+            System.out.println("Institucion Educacional: ");
+            postulante.setInstituto(scn.nextLine());
+            agregarPostulante(postulante);
+            System.out.println("De la siguiente lista, ingrese, una por una, las skills que maneja. Cuando haya terminado, ingrese '0' ");
+        
+        this.mostrarTodasSkills();
+        
+        Skill auxSkill = new Skill();
+        LinkedList<Skill> listaSkills;
+        listaSkills = new LinkedList<>();
+        String nombreSkill = "aux";
+        
+        while (!nombreSkill.equals("0")){
+            nombreSkill = scn.nextLine();
+            if (nombreSkill.equals("0")) break;
+            auxSkill.agregarSkill(nombreSkill, listaSkills);
+        }
+        
+        postulante.setSkills(listaSkills);
         }
     }
     
