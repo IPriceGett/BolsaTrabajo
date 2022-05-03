@@ -478,45 +478,6 @@ public class Utilidades {
             }  
         }
     }
-
-    public void agregarPostulantes(LinkedList postulantes){
-        for(int i = 0; i< postulantes.size(); i++){
-            eliminarPostulante(postulantes.get(i));
-            agregarPostulante(postulantes.get(i));
-        }
-    }
-
-    public void editarSkillArea(String nombreArea, String nombreAntiguo, String nombreNuevo){
-        LinkedList aux;
-        for(int i = 0; i< listaAreas.size(); i++){
-            if(listaAreas.get(i).getNombre().equals(nombreArea)){
-                for(int j = 0; j< listaAreas.get(i).getSkills().size(); j++){
-                    if(listaAreas.get(i).getSkills().get(j).getNombre().equals(nombreAntiguo)){
-                       listaAreas.get(i).getSkills().get(j).setNombre(nombreNuevo);
-                       aux = listaAreas.get(i).getPostulantes();
-                       listaAreas.get(i).getPostulantes().clear();
-                       agregarPostulantes(aux);
-                    }
-                }
-            }
-        }
-    }
-
-    public void eliminarSkillArea(String nombreArea, String nombreSkill){
-        LinkedList aux;
-        for(int i = 0; i< listaAreas.size(); i++){
-            if(listaAreas.get(i).getNombre().equals(nombreArea)){
-                for(int j = 0; j< listaAreas.get(i).getSkills().size(); j++){
-                    if(listaAreas.get(i).getSkills().get(j).getNombre().equals(nombreSkill)){
-                       listaAreas.get(i).getSkills().remove(j);
-                       aux = listaAreas.get(i).getPostulantes();
-                       listaAreas.get(i).getPostulantes().clear();
-                       agregarPostulantes(aux);
-                    }
-                }
-            }
-        }
-    }
     
     // Relacionadas a Menu
     
