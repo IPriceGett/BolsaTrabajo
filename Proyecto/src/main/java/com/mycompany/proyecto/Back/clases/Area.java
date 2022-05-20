@@ -33,7 +33,7 @@ public class Area {
         this.total = 1;
         this.contratados = new Curriculum[1];
         this.postulantes = new Curriculum[1];
-        this.skills = new Skills[1];
+        this.skills = new Skill[1];
     }
 
     public String getNombre(){

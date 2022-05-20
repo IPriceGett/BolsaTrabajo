@@ -34,7 +34,7 @@ public class Curriculum extends Persona{
         super();
         this.annosExperiencia = 0;
         this.instituto = "";
-        this.skills = new Skill();
+        this.skills = new Skill[] {new Skill()} ;
     }
 
     public String getInstituto(){
