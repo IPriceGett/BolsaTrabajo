@@ -6,6 +6,7 @@
 
 package com.mycompany.proyecto.Back.utilidades;
 import com.mycompany.proyecto.Back.clases.*;
+import com.mycompany.proyecto.Back.interfaces.*;
 
 /**
  *
@@ -19,14 +20,14 @@ import java.util.Scanner;
 import java.util.Comparator;
 
 
-public class Utilidades {
+public class Utilidades implements Utiles{
     
-    HashMap<String, Curriculum> mapaPostulantes = new HashMap<>(); // listo eliminar listo editar
-    LinkedList<Area> listaAreas = new LinkedList<>(); //listo eliminar falta editar
+    HashMap<String, TrabajadorPostulante> mapaPostulantes = new HashMap<>(); 
+    LinkedList<Area> listaAreas = new LinkedList<>(); 
 
-    public Curriculum crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, LinkedList skills, int experiencia, String instituto){
+    public TrabajadorPostulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, LinkedList skills, int experiencia, String instituto){
         
-        Curriculum postulante = new Curriculum();
+        TrabajadorPostulante postulante = new TrabajadorPostulante();
         postulante.setNombre(nombre);
         postulante.setApellido(apellido);
         postulante.setRut(rut);
@@ -41,9 +42,9 @@ public class Utilidades {
         return postulante; 
     }
     
-    public Curriculum crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto){
+    public TrabajadorPostulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto){
         
-        Curriculum postulante = new Curriculum();
+        TrabajadorPostulante postulante = new TrabajadorPostulante();
         postulante.setNombre(nombre);
         postulante.setApellido(apellido);
         postulante.setRut(rut);
@@ -67,7 +68,7 @@ public class Utilidades {
        Por lo tanto por mientras para testear el agregar postulantes se pide ingresar skills relacionadas a una sola area, ya que
        este sera ingresado al area con el que encuentre la primera skill en comun.
     */
-    public void agregarPostulante(Curriculum postulante){
+    public void agregarPostulante(TrabajadorPostulante postulante){
         
         if (mapaPostulantes.containsKey(postulante.getRut())){
         System.out.println("Este postulante ya se encuentra en nuestra base de datos.");
@@ -75,7 +76,7 @@ public class Utilidades {
         }
    
         Utilidades auxUtil = new Utilidades();
-        Comparator<Curriculum> comparador = new ComparadorPuntaje();
+        Comparator<TrabajadorPostulante> comparador = new ComparadorPuntaje();
         Area area;
         LinkedList<Skill> listaSkillsP = postulante.getSkills();
         LinkedList<Skill> listaSkillsA;
@@ -120,7 +121,7 @@ public class Utilidades {
     public void agregarPostulanteUsuario(){
         
         Scanner scn = new Scanner(System.in);
-        Curriculum postulante = new Curriculum();
+        TrabajadorPostulante postulante = new TrabajadorPostulante();
         
         System.out.println("Por favor ingrese los siguientes datos del postulante: ");
         System.out.println("Nombre(s): ");
@@ -166,18 +167,8 @@ public class Utilidades {
         //Agregar postulante recien creado
         this.agregarPostulante(postulante);   
     }
-    /*
-    class compPuntaje implements Comparator<Curriculum>{	 
-    @Override
-    public int compare(Curriculum postulante1, Curriculum postulante2) {
-        if(postulante1.getPuntaje() < postulante2.getPuntaje()){
-            return 1;
-        } else {
-            return -1;
-        }
-    }*/
 
-    public void calcularPuntaje(Curriculum postulante){ // Por el momento asigna un numero random, se tiene que crear formula para calcular puntaje
+    public void calcularPuntaje(TrabajadorPostulante postulante){ // Por el momento asigna un numero random, se tiene que crear formula para calcular puntaje
         int puntaje = (int) Math.floor(Math.random()*(100-1+1)+1);
         postulante.setPuntaje(puntaje);
     }
@@ -191,8 +182,8 @@ public class Utilidades {
         
         for(int i = 0; i < listaAreas.size() ; i++){
            for(int j = 0; j< listaAreas.get(i).getPostulantes().size(); j++){
-                if(((Curriculum)listaAreas.get(i).getPostulantes().get(j)).getRut().equals(rut)){
-                    listaAreas.get(i).removePostulante((Curriculum)listaAreas.get(i).getPostulantes().get(j));
+                if(((TrabajadorPostulante)listaAreas.get(i).getPostulantes().get(j)).getRut().equals(rut)){
+                    listaAreas.get(i).removePostulante((TrabajadorPostulante)listaAreas.get(i).getPostulantes().get(j));
                     return;
                 }
            }
@@ -207,7 +198,7 @@ public class Utilidades {
             return false;
         }
         
-        Curriculum postulante = (Curriculum) mapaPostulantes.get(rut);
+        TrabajadorPostulante postulante = (TrabajadorPostulante) mapaPostulantes.get(rut);
         System.out.println("Nombre: " + postulante.getNombre() + " " + postulante.getApellido());
         System.out.println("Rut: " + postulante.getRut());
         System.out.println("Genero: " + postulante.getGenero());
@@ -236,8 +227,8 @@ public class Utilidades {
             return;
         }
 
-        LinkedList<Curriculum> listaPost;
-        Curriculum postulante;
+        LinkedList<TrabajadorPostulante> listaPost;
+        TrabajadorPostulante postulante;
         
         for (int i = 0; i < listaAreas.size(); i++){
             
@@ -268,7 +259,7 @@ public class Utilidades {
         rut = scn.nextLine();
         if(mapaPostulantes.containsKey(rut)){
             this.eliminarPostulante(rut);
-            Curriculum postulante = new Curriculum();
+            TrabajadorPostulante postulante = new TrabajadorPostulante();
             System.out.println("Por favor ingrese los siguientes datos del postulante: ");
             System.out.println("Nombre(s): ");
             postulante.setNombre(scn.nextLine());
@@ -309,23 +300,14 @@ public class Utilidades {
         postulante.setSkills(listaSkills);
         }
     }
-    
-    //Relacionado a trabajadores
-    //Aun no implementado
-    /*
-    public void agregarTrabajador(Curriculum trabajador){
-        String rut = trabajador.getRut();
-         if (mapaPostulantes.containsKey(rut)){
-            System.out.println("Este trabajador ya se encuentra en nuestra base de datos");
-            return;
+
+    public void agregarPostulantes(LinkedList postulantes){
+        for(int i = 0; i< postulantes.size(); i++){
+            eliminarPostulante((String) postulantes.get(i));
+            agregarPostulante((TrabajadorPostulante) postulantes.get(i));
         }
-        mapaPostulantes.put(rut, trabajador);
     }
     
-    public void eliminarTrabajador(String rut){
-        mapaPostulantes.remove(rut);
-    }*/
-
     // Relacionados a Areas
 
     public void agregarArea(Area area){
@@ -387,7 +369,8 @@ public class Utilidades {
         System.out.println();
         for (int i = 0; i < listaAreas.size(); i++){
             System.out.println(listaAreas.get(i).getNombre());
-        }    
+        }
+        System.out.println();    
     }
     
     public void mostrarSkillsPorArea(){
@@ -450,7 +433,7 @@ public class Utilidades {
 
         Scanner scn = new Scanner(System.in);
         String eliminar;
-        LinkedList<Curriculum> listaPost;
+        LinkedList<TrabajadorPostulante> listaPost;
 
         System.out.println("De las siguientes areas seleccione la que desea eliminar:");
 
@@ -478,119 +461,111 @@ public class Utilidades {
             }  
         }
     }
+
+    public void editarArea(){
+        if(listaAreas.isEmpty()){
+            System.out.println("Aun no existen areas para editar.");
+            return;
+        }
+
+        Scanner scn = new Scanner(System.in);
+        String nombre;
+        String nuevo;
+
+        mostrarAreas();
+        System.out.println("Ingrese el nombre del area a editar: ");
+        nombre = scn.nextLine();
+
+        for (int i = 0; i < listaAreas.size() ; i++) {
+            if(nombre.equals(listaAreas.get(i).getNombre())){
+                System.out.println("Ingrese el nuevo nombre: ");
+                nuevo = scn.nextLine();
+                listaAreas.get(i).setNombre(nuevo);
+                System.out.println("Area editada correctamente.");
+                return;
+            }
+        }
+    }
+
+    // Relacionados a Skill
+
+    public void editarSkillArea(String nombreArea, String nombreAntiguo, String nombreNuevo){
+        LinkedList aux;
+        for(int i = 0; i< listaAreas.size(); i++){
+            if(listaAreas.get(i).getNombre().equals(nombreArea)){
+                for(int j = 0; j< listaAreas.get(i).getSkills().size(); j++){
+                    if(((Skill)listaAreas.get(i).getSkills().get(j)).getNombre().equals(nombreAntiguo)){
+                       ((Skill)listaAreas.get(i).getSkills().get(j)).setNombre(nombreNuevo);
+                       aux = listaAreas.get(i).getPostulantes();
+                       listaAreas.get(i).getPostulantes().clear();
+                       agregarPostulantes(aux);
+                    }
+                }
+            }
+        }
+    }
+    public void eliminarSkillArea(String nombreArea, String nombreSkill){
+        LinkedList aux;
+        for(int i = 0; i< listaAreas.size(); i++){
+            if(listaAreas.get(i).getNombre().equals(nombreArea)){
+                for(int j = 0; j< listaAreas.get(i).getSkills().size(); j++){
+                    if(((Skill)listaAreas.get(i).getSkills().get(j)).getNombre().equals(nombreSkill)){
+                       listaAreas.get(i).getSkills().remove(j);
+                       aux = listaAreas.get(i).getPostulantes();
+                       listaAreas.get(i).getPostulantes().clear();
+                       agregarPostulantes(aux);
+                    }
+                }
+            }
+        }
+    }
+
+    public TrabajadorPostulante obtenerMejorPostulanteAreas(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        aux = listaAreas.get(0).top();
+        for(int i=0; i< listaAreas.size() -1 ; i++ ){
+            if(aux.getPuntaje() <= listaAreas.get(i+1).top().getPuntaje()){
+               aux = listaAreas.get(i+1).top(); 
+            }
+        }
+        return aux;
+    }
+
+    public TrabajadorPostulante obtenerPeorPostulanteAreas(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        aux = listaAreas.get(0).noTop();
+        for(int i=0; i< listaAreas.size() -1 ; i++ ){
+            if(aux.getPuntaje() >= listaAreas.get(i+1).noTop().getPuntaje()){
+               aux = listaAreas.get(i+1).noTop(); 
+            }
+        }
+        return aux;
+    }
+
+    public int obtenerMejorExpectativaAreas(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        aux = listaAreas.get(0).mejorExpectativa();
+        for(int i=0; i< listaAreas.size() -1 ; i++ ){
+            if(aux.obtenerSueldo() <= listaAreas.get(i+1).mejorExpectativa().obtenerSueldo()){
+               aux = listaAreas.get(i+1).mejorExpectativa(); 
+            }
+        }
+        return aux.obtenerSueldo();
+    }
+
+
+    public int obtenerPeorExpectativaAreas(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        aux = listaAreas.get(0).peorExpectativa();
+        for(int i=0; i< listaAreas.size() -1 ; i++ ){
+            if(aux.obtenerSueldo() >= listaAreas.get(i+1).peorExpectativa().obtenerSueldo()){
+               aux = listaAreas.get(i+1).peorExpectativa(); 
+            }
+        }
+        return aux.obtenerSueldo();
+    }
     
     // Relacionadas a Menu
     
-    public void menu(){
-        
-        System.out.println("BOLSA DE TRABAJO");
-        System.out.println();
-                
-        int opcion;
-         do{
-                mostrarOpciones();
-                  
-                Scanner scn = new Scanner(System.in);
-
-                opcion = scn.nextInt();
-                scn.nextLine();
-
-                switch(opcion){
-
-                    case 1:
-                    {
-                        agregarPostulanteUsuario();
-
-                        break;
-                    }
-
-                    case 2:
-                    {
-                        System.out.println("Ingrese el rut del postulante a buscar (sin puntos y con guión): ");
-                        String rut = scn.nextLine();
-
-                        buscarPostulante(rut);  
-
-                      break;
-                    }
-
-                    case 3:
-                    {
-                        mostrarPostulantesPorArea();
-
-                        break;
-                    }
-
-                    case 4:
-                    {
-                        agregarAreaUsuario();
-                        
-                        break;
-                    }
-
-                    case 5:
-                    {
-                        mostrarAreas();
-                        
-                        break;
-                    }
-
-                    case 6:
-                    {
-                        agregarSkillAreaUsuario();
-
-                        break;
-                    }
-
-                    case 7:
-                    {
-                        mostrarSkillsPorArea();
-
-                        break; 
-                    }
-
-                    case 8:
-                    {
-                        eliminarArea();
-
-                        break; 
-                    }
-
-                    case 9:
-                    {
-                        editarPostulante();
-
-                        break; 
-                    }
-
-                    case 0:
-                    {
-                        System.out.println("Exit");
-
-                        break;
-                    }
-
-                    default:
-                        return;
-                }
-                
-               System.out.println(); 
-               
-            } while(opcion != 0);
-         }
-
-    public void mostrarOpciones(){
-       
-        System.out.println("Elija una opcion para continuar: ");
-        System.out.println("1.- Agregar postulante"); // Agrega a mapa de todos los postulantes y a lista de postulantes del area correspondiente
-        System.out.println("2.- Buscar postulante"); //Busca postulante en mapa
-        System.out.println("3.- Mostrar todos los postulantes"); //Recorre la lista de areas, y luego la lista de postulantes de cada una
-        System.out.println("4.- Agregar área");
-        System.out.println("5.- Mostrar todas las áreas");
-        System.out.println("6.- Agregar skill a área");
-        System.out.println("7.- Mostrar las skills de cada área");
-        System.out.println("8.- Eliminar área");
-        System.out.println("9.- Editar postulante");
-        System.out.println("0.- Salir");
-    }
+    
 }

@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package com.mycompany.proyecto.Back;
-import com.mycompany.proyecto.Back.clases.*;
+package com.mycompany.proyecto.Back.interfaces;
 import com.mycompany.proyecto.Back.utilidades.*;
 
 
-public class BolsaTrabajo{
-    public static void main(String[] args){
-        InicialEnDuro data = new InicialEnDuro();
-        data.inicializar();
-    }
+/**
+ *
+ * @author igale
+ */
+public interface Data {
+    public Utilidades cargaInicial();
+    public void mostrarOpcionesIniciales();
+    public void inicializar();
 }

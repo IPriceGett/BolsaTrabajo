@@ -12,28 +12,28 @@ package com.mycompany.proyecto.Back.clases;
  */
 import java.util.LinkedList;
 
-public class Curriculum extends Persona {
+public abstract class Trabajador extends Persona {
 
     private LinkedList<Skill> skills; 
     private int añosExperiencia;
     private String instituto;
     private int puntaje;
 
-    public Curriculum(int añosExperiencia, String instituto, LinkedList skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
+    public Trabajador(int añosExperiencia, String instituto, LinkedList skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
         super(nombre, apellido, rut, genero, edad, correo, telefono);
         this.añosExperiencia = añosExperiencia;
         this.instituto = instituto;
         this.skills = skills;
     }
 
-    public Curriculum(int annosExperiencia, String instituto, LinkedList skills){
+    public Trabajador(int annosExperiencia, String instituto, LinkedList skills){
         super();
         this.añosExperiencia = annosExperiencia;
         this.instituto = instituto;
         this.skills = skills;
     }
 
-    public Curriculum(){
+    public Trabajador(){
         super();
         this.añosExperiencia = 0;
         this.instituto = "";
@@ -41,7 +41,7 @@ public class Curriculum extends Persona {
         this.puntaje = 0;
     }
     
-    public Curriculum(String nombre, String apellido, String rut,  String genero, int edad, String correo, String telefono, int annosExperiencia, String instituto){
+    public Trabajador(String nombre, String apellido, String rut,  String genero, int edad, String correo, String telefono, int annosExperiencia, String instituto){
         super(nombre, apellido, rut, genero, edad, correo, telefono);
         this.añosExperiencia = annosExperiencia;
         this.instituto = instituto;
@@ -79,8 +79,7 @@ public class Curriculum extends Persona {
     public void setPuntaje(int puntaje){
         this.puntaje = puntaje;
     }
-    
-    
-    	
+    abstract public int obtenerSueldo();
+    abstract public String obtenerPosicion();
 
 }

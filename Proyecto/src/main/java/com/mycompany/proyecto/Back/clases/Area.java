@@ -18,9 +18,9 @@ public class Area {
     private String nombre;
     private int vacantes;
     private int total;
-    private LinkedList<Skill> skills; //  falta eliminar y editar
+    private LinkedList<Skill> skills;
     //private HashMap contratados; //mapa 
-    private LinkedList<Curriculum> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion. listo eliminar listo editar
+    private LinkedList<TrabajadorPostulante> postulantes; //Lista de postulantes a la correspondiente area, ordenados de mayor a menor por su puntaje de postulacion. 
 
     public Area(){
         this.nombre = "";
@@ -103,12 +103,52 @@ public class Area {
         this.contratados = contratados;
     }*/
 
-    public void setPostulantes(Curriculum postulante){
+    public void setPostulantes(TrabajadorPostulante postulante){
         this.postulantes.add(postulante);
     }
 
-    public void removePostulante(Curriculum postulante){
+    public void removePostulante(TrabajadorPostulante postulante){
         this.postulantes.remove(postulante);
+    }
+    
+    public TrabajadorPostulante top(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        for(int i=0; i< postulantes.size() ; i++ ){
+            if(aux.getPuntaje() <= postulantes.get(i).getPuntaje()){
+               aux = postulantes.get(i); 
+            }
+        }
+        return aux;
+    }
+
+    public TrabajadorPostulante noTop(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        for(int i=0; i< postulantes.size() ; i++ ){
+            if(aux.getPuntaje() >= postulantes.get(i).getPuntaje()){
+               aux = postulantes.get(i); 
+            }
+        }
+        return aux;
+    }
+    
+    public TrabajadorPostulante peorExpectativa(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        for(int i=0; i< postulantes.size() ; i++ ){
+            if(aux.obtenerSueldo() >= postulantes.get(i).obtenerSueldo()){
+               aux = postulantes.get(i); 
+            }
+        }
+        return aux;
+    }
+
+    public TrabajadorPostulante mejorExpectativa(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        for(int i=0; i< postulantes.size() ; i++ ){
+            if(aux.obtenerSueldo() <= postulantes.get(i).obtenerSueldo()){
+               aux = postulantes.get(i); 
+            }
+        }
+        return aux;
     }
 
 }
