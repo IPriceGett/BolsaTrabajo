@@ -173,10 +173,9 @@ public class Utilidades implements Utiles{
         postulante.setPuntaje(puntaje);
     }
     
-    public void eliminarPostulante(String rut){
+    public boolean eliminarPostulante(String rut){
         if (!mapaPostulantes.containsKey(rut)){
-        System.out.println("Este postulante no se encontraba en nuestra base de datos.");
-        return;
+            return false;
         }
         mapaPostulantes.remove(rut);
         
@@ -184,11 +183,11 @@ public class Utilidades implements Utiles{
            for(int j = 0; j< listaAreas.get(i).getPostulantes().size(); j++){
                 if(((TrabajadorPostulante)listaAreas.get(i).getPostulantes().get(j)).getRut().equals(rut)){
                     listaAreas.get(i).removePostulante((TrabajadorPostulante)listaAreas.get(i).getPostulantes().get(j));
-                    return;
+                    break;
                 }
            }
         }
-        System.out.println("Postulante eliminado.");
+        return true;
     }
     
      public boolean buscarPostulante(String rut){
@@ -240,15 +239,14 @@ public class Utilidades implements Utiles{
                  continue;
             }
             
-            System.out.println("Nombre completo     RUT     Puntaje de postulacion");
+            System.out.println("Nombre completo        RUT      Puntaje de postulacion     Expectativa de sueldo");
             
             for (int j = 0; j < listaPost.size(); j++){
                 
                 postulante = listaPost.get(j);
-                System.out.println(postulante.getNombre() + " " + postulante.getApellido() + " | " + postulante.getRut() + " | " + postulante.getPuntaje());
+                postulante.mostrarInfoTrabajador();
             }
         }
-
     }
 
     public void editarPostulante(){
@@ -305,6 +303,124 @@ public class Utilidades implements Utiles{
         for(int i = 0; i< postulantes.size(); i++){
             eliminarPostulante((String) postulantes.get(i));
             agregarPostulante((TrabajadorPostulante) postulantes.get(i));
+        }
+    }
+    
+    public TrabajadorPostulante obtenerMejorPostulanteAreas(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        aux = listaAreas.get(0).top();
+        for(int i=0; i< listaAreas.size() -1 ; i++ ){
+            if(aux.getPuntaje() <= listaAreas.get(i+1).top().getPuntaje()){
+               aux = listaAreas.get(i+1).top(); 
+            }
+        }
+        return aux;
+    }
+
+    public TrabajadorPostulante obtenerPeorPostulanteAreas(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        aux = listaAreas.get(0).noTop();
+        for(int i=0; i< listaAreas.size() -1 ; i++ ){
+            if(aux.getPuntaje() >= listaAreas.get(i+1).noTop().getPuntaje()){
+               aux = listaAreas.get(i+1).noTop(); 
+            }
+        }
+        return aux;
+    }
+
+    public int obtenerMejorExpectativaAreas(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        aux = listaAreas.get(0).mejorExpectativa();
+        for(int i=0; i< listaAreas.size() -1 ; i++ ){
+            if(aux.obtenerSueldo() <= listaAreas.get(i+1).mejorExpectativa().obtenerSueldo()){
+               aux = listaAreas.get(i+1).mejorExpectativa(); 
+            }
+        }
+        return aux.obtenerSueldo();
+    }
+
+    public int obtenerPeorExpectativaAreas(){
+        TrabajadorPostulante aux = new TrabajadorPostulante();
+        aux = listaAreas.get(0).peorExpectativa();
+        for(int i=0; i< listaAreas.size() -1 ; i++ ){
+            if(aux.obtenerSueldo() >= listaAreas.get(i+1).peorExpectativa().obtenerSueldo()){
+               aux = listaAreas.get(i+1).peorExpectativa(); 
+            }
+        }
+        return aux.obtenerSueldo();
+    }
+    
+    public void mostrarSobreXPuntaje(int minimo){
+        if (mapaPostulantes.isEmpty())
+        {
+            System.out.println("Aún no se ha agregado ningún postulante.");
+            return;
+        }
+
+        LinkedList<TrabajadorPostulante> listaPost;
+        TrabajadorPostulante postulante;
+        int cont;
+        
+        System.out.println("Los postulantes con un puntaje superior a " + minimo + " son: ");
+        
+        for (int i = 0; i < listaAreas.size(); i++){
+
+            listaPost = listaAreas.get(i).getPostulantes();
+            
+            if(listaPost.isEmpty())
+                 continue;
+            
+            System.out.println(listaAreas.get(i).getNombre().toUpperCase());
+            cont = 0;
+            
+            for (int j = 0; j < listaPost.size(); j++){
+                postulante = listaPost.get(j);
+                
+                if(postulante.getPuntaje() > minimo){
+                    System.out.println(postulante.getNombre() + " " + postulante.getApellido() + ", " + postulante.getPuntaje() + " puntos.");
+                    cont++;
+                }     
+            }
+            
+            if(cont == 0)
+                System.out.println("No existen postulantes que cumplan el requisito.");
+        }
+    }
+    
+    public void sueldoInferiorA(int maximo){
+        if (mapaPostulantes.isEmpty())
+        {
+            System.out.println("Aún no se ha agregado ningún postulante.");
+            return;
+        }
+
+        LinkedList<TrabajadorPostulante> listaPost;
+        TrabajadorPostulante postulante;
+        int cont;
+        
+        System.out.println("Los postulantes con una expectativa de sueldo inferior a " + maximo + " son: ");
+        
+        for (int i = 0; i < listaAreas.size(); i++){
+
+            listaPost = listaAreas.get(i).getPostulantes();
+            
+            if(listaPost.isEmpty())
+                 continue;
+            
+            System.out.println(listaAreas.get(i).getNombre().toUpperCase());
+            cont = 0;
+            
+            for (int j = 0; j < listaPost.size(); j++){
+                postulante = listaPost.get(j);
+                
+                if(postulante.obtenerSueldo() < maximo){
+                    System.out.println(postulante.getNombre() + " " + postulante.getApellido() + ", con una expectativa de sueldo de " + postulante.obtenerSueldo());
+                    cont++;
+                }     
+            }
+            
+            if(cont == 0)
+                System.out.println("No existen postulantes que cumplan el requisito.");
         }
     }
     
@@ -519,53 +635,4 @@ public class Utilidades implements Utiles{
             }
         }
     }
-
-    public TrabajadorPostulante obtenerMejorPostulanteAreas(){
-        TrabajadorPostulante aux = new TrabajadorPostulante();
-        aux = listaAreas.get(0).top();
-        for(int i=0; i< listaAreas.size() -1 ; i++ ){
-            if(aux.getPuntaje() <= listaAreas.get(i+1).top().getPuntaje()){
-               aux = listaAreas.get(i+1).top(); 
-            }
-        }
-        return aux;
-    }
-
-    public TrabajadorPostulante obtenerPeorPostulanteAreas(){
-        TrabajadorPostulante aux = new TrabajadorPostulante();
-        aux = listaAreas.get(0).noTop();
-        for(int i=0; i< listaAreas.size() -1 ; i++ ){
-            if(aux.getPuntaje() >= listaAreas.get(i+1).noTop().getPuntaje()){
-               aux = listaAreas.get(i+1).noTop(); 
-            }
-        }
-        return aux;
-    }
-
-    public int obtenerMejorExpectativaAreas(){
-        TrabajadorPostulante aux = new TrabajadorPostulante();
-        aux = listaAreas.get(0).mejorExpectativa();
-        for(int i=0; i< listaAreas.size() -1 ; i++ ){
-            if(aux.obtenerSueldo() <= listaAreas.get(i+1).mejorExpectativa().obtenerSueldo()){
-               aux = listaAreas.get(i+1).mejorExpectativa(); 
-            }
-        }
-        return aux.obtenerSueldo();
-    }
-
-
-    public int obtenerPeorExpectativaAreas(){
-        TrabajadorPostulante aux = new TrabajadorPostulante();
-        aux = listaAreas.get(0).peorExpectativa();
-        for(int i=0; i< listaAreas.size() -1 ; i++ ){
-            if(aux.obtenerSueldo() >= listaAreas.get(i+1).peorExpectativa().obtenerSueldo()){
-               aux = listaAreas.get(i+1).peorExpectativa(); 
-            }
-        }
-        return aux.obtenerSueldo();
-    }
-    
-    // Relacionadas a Menu
-    
-    
 }

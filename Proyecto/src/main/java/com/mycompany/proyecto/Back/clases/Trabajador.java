@@ -79,7 +79,13 @@ public abstract class Trabajador extends Persona {
     public void setPuntaje(int puntaje){
         this.puntaje = puntaje;
     }
+    
     abstract public int obtenerSueldo();
     abstract public String obtenerPosicion();
+    
+    public void mostrarInfoTrabajador(){
+        System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut() + " |           " + this.getPuntaje());
+        return;
+    }
 
 }

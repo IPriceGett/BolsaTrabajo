@@ -12,7 +12,8 @@ import com.mycompany.proyecto.Back.utilidades.*;
  * @author igale
  */
 public class InicialConPersistencia implements Data {
-    public Utilidades cargaInicial(){ /* metodo para conexion a base de datos y hacer la carga de datos */ }
+    public Utilidades cargaInicial(){return null;
+ /* metodo para conexion a base de datos y hacer la carga de datos */ }
     public void mostrarOpcionesIniciales(){  /* metodo para mostrar opciones iniciales de la base de datos */ }
     public void inicializar(){ /* metodo para iniciar app */ }
 }

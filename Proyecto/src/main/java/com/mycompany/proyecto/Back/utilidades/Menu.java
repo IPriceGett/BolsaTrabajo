@@ -60,57 +60,73 @@ public void menuUsuario(Utilidades utiles){
 
                         break;
                     }
-
+                    
                     case 4:
                     {
-                        utiles.agregarAreaUsuario();
-                        
-                        break;
-                    }
+                        utiles.editarPostulante();
 
+                        break; 
+                    }
+                    
                     case 5:
                     {
-                        utiles.mostrarAreas();
+                        String rut;
+
+                        System.out.println("Ingrese el rut (sin puntos y con guion) del postulante que desea eliminar: ");
+                        rut = scn.nextLine();
+                        
+                        if(utiles.eliminarPostulante(rut))
+                            System.out.println("Postulante eliminado correctamente.");
+                        
+                        else
+                            System.out.println("Este postulante no se encontraba en nuestra base de datos.");
                         
                         break;
                     }
 
                     case 6:
                     {
-                        utiles.agregarSkillAreaUsuario();
-
+                        utiles.agregarAreaUsuario();
+                        
                         break;
                     }
 
                     case 7:
                     {
-                        utiles.mostrarSkillsPorArea();
+                        utiles.mostrarAreas();
+                        
+                        break;
+                    }
+                    
+                    case 8:
+                    {
+                        utiles.editarArea();
 
                         break; 
                     }
-
-                    case 8:
+                    
+                    case 9:
                     {
                         utiles.eliminarArea();
 
                         break; 
                     }
 
-                    case 9:
-                    {
-                        utiles.editarPostulante();
-
-                        break; 
-                    }
-
                     case 10:
                     {
-                        utiles.editarArea();
+                        utiles.agregarSkillAreaUsuario();
 
-                        break; 
+                        break;
                     }
 
                     case 11:
+                    {
+                        utiles.mostrarSkillsPorArea();
+
+                        break; 
+                    }
+
+                    case 12:
                     {
                         String area, skill, nuevo;
                         utiles.mostrarSkillsPorArea();
@@ -124,7 +140,7 @@ public void menuUsuario(Utilidades utiles){
                         break; 
                     }
 
-                    case 12:
+                    case 13:
                     {
                         String area, skill;
                         utiles.mostrarSkillsPorArea();
@@ -134,6 +150,39 @@ public void menuUsuario(Utilidades utiles){
                         utiles.eliminarSkillArea(area, skill);
 
                         break; 
+                    }
+                    
+                    case 14:
+                    {
+                        TrabajadorPostulante postulante;
+                        postulante = utiles.obtenerMejorPostulanteAreas();
+                        System.out.println("El/La mejor postulante es " + postulante.getNombre() + " " + postulante.getApellido() + ", RUT " + postulante.getRut() + ", con un puntaje de " + postulante.getPuntaje() + ".");
+
+                        break;
+                    }
+                    
+                    case 15:
+                    {
+                        int minimo;
+                        System.out.println("Ingrese el puntaje minimo a mostrar (entre 0 y 99): ");
+                        minimo = scn.nextInt();
+                        scn.nextLine();
+                        
+                        utiles.mostrarSobreXPuntaje(minimo);
+
+                        break;
+                    }
+                    
+                    case 16:
+                    {
+                        int maximo;
+                        System.out.println("Ingrese el sueldo maximo a mostrar: ");
+                        maximo = scn.nextInt();
+                        scn.nextLine();
+                        
+                        utiles.sueldoInferiorA(maximo);
+
+                        break;
                     }
 
                     case 0:

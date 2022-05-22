@@ -20,6 +20,15 @@ public class TrabajadorContratado extends Trabajador {
         this.añosContratado = 0;
         this.posicionDeTrabajo = "nula";
     }
-    public int obtenerSueldo(){ return this.sueldo; }
-    public String obtenerPosicion(){ return this.posicionDeTrabajo; }
+    public int obtenerSueldo(){ 
+        return this.sueldo; 
+    }
+    public String obtenerPosicion(){ 
+        return this.posicionDeTrabajo; 
+    }
+    
+    public void mostrarInfoTrabajador(){
+        System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut() + " |           " + this.getPuntaje() + "           |          " + añosContratado + " | " + sueldo);
+        return;
+    }
 }
