@@ -88,8 +88,8 @@ public class Area {
         this.postulantes.add(postulante);
     }
    
-    public void removePostulante(Postulante postulante){
-        this.postulantes.remove(postulante);
+    public void removePostulante(int index){
+        this.postulantes.remove(index);
     }
     
     public Postulante top(){

@@ -20,31 +20,23 @@ public class InicialEnDuro implements Data{
         Area finanzas = new Area("Finanzas", 10, 10);
         Area marketing = new Area("Marketing", 10, 10);
 
-        Skill python = new Skill();
-        python.setNombre("Python");
+        Skill python = new Skill("Python", 85);
         informatica.setSkill(python);
-        Skill sql = new Skill();
-        sql.setNombre("SQL");
+        Skill sql = new Skill("SQL", 25);
         informatica.setSkill(sql);
-        Skill nodejs = new Skill();
-        nodejs.setNombre("NodeJs");
+        Skill nodejs = new Skill("NodeJs", 32);
         informatica.setSkill(nodejs);
-        Skill angular = new Skill();
-        angular.setNombre("Angular");
+        Skill angular = new Skill("Angular", 17);
         informatica.setSkill(angular);
         
-        Skill contabilidad = new Skill();
-        contabilidad.setNombre("Contabilidad");
+        Skill contabilidad = new Skill("Contabilidad", 74);
         finanzas.setSkill(contabilidad);
-        Skill excel = new Skill();
-        excel.setNombre("Excel");
+        Skill excel = new Skill("Excel", 86);
         finanzas.setSkill(excel);
         
-        Skill publicidad = new Skill();
-        publicidad.setNombre("Publicidad");
+        Skill publicidad = new Skill("Publicidad", 75);
         marketing.setSkill(publicidad);
-        Skill photoshop = new Skill();
-        photoshop.setNombre("Photoshop");
+        Skill photoshop = new Skill("Photoshop", 49);
         marketing.setSkill(photoshop);
     
         auxUtil.agregarArea(informatica);

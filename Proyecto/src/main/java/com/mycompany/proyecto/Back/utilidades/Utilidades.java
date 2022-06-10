@@ -156,13 +156,13 @@ public class Utilidades implements Utiles{
         }
         mapaPostulantes.remove(rut);
         
-        Postulante postulante;
+        Postulante postulante = new Postulante();
         
         for(int i = 0; i < listaAreas.size() ; i++){
-            for(int j = 0; j< listaAreas.get(i).getLargoPostulantes(); j++){
+            for(int j = 0; j < listaAreas.get(i).getLargoPostulantes(); j++){
                 postulante = listaAreas.get(i).getPostulante(j);
                 if(postulante.getRut().equals(rut)){
-                    listaAreas.get(i).removePostulante(postulante);
+                    listaAreas.get(i).removePostulante(j);
                     break;
                 }
             }
