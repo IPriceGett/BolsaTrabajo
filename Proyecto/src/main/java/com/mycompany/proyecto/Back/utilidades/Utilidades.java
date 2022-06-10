@@ -22,12 +22,12 @@ import java.util.Comparator;
 
 public class Utilidades implements Utiles{
     
-    HashMap<String, TrabajadorPostulante> mapaPostulantes = new HashMap<>(); 
-    LinkedList<Area> listaAreas = new LinkedList<>(); 
+    private HashMap<String, Postulante> mapaPostulantes = new HashMap<String, Postulante>(); 
+    private LinkedList<Area> listaAreas = new LinkedList<Area>(); 
 
-    public TrabajadorPostulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, LinkedList skills, int experiencia, String instituto){
+    public Postulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto){
         
-        TrabajadorPostulante postulante = new TrabajadorPostulante();
+        Postulante postulante = new Postulante();
         postulante.setNombre(nombre);
         postulante.setApellido(apellido);
         postulante.setRut(rut);
@@ -35,31 +35,12 @@ public class Utilidades implements Utiles{
         postulante.setEdad(edad);
         postulante.setCorreo(correo);
         postulante.setTelefono(telefono);
-        postulante.setSkills(skills);
-        postulante.setAñosExperiencia(experiencia);
+        postulante.setExperiencia(experiencia);
         postulante.setInstituto(instituto);
 
         return postulante; 
     }
-    
-    public TrabajadorPostulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto){
-        
-        TrabajadorPostulante postulante = new TrabajadorPostulante();
-        postulante.setNombre(nombre);
-        postulante.setApellido(apellido);
-        postulante.setRut(rut);
-        postulante.setGenero(genero);
-        postulante.setEdad(edad);
-        postulante.setCorreo(correo);
-        postulante.setTelefono(telefono);
-        postulante.setAñosExperiencia(experiencia);
-        postulante.setInstituto(instituto);
-        LinkedList<Skill> skills = new LinkedList<>();
-        postulante.setSkills(skills);
-
-        return postulante;
-    }
-    
+   
     //Relacionado a postulantes
     
     /*Se ha implementado el comparar las skills del postulante con las de cada area, pero, hasta ahora, al encontrar el primer
@@ -68,51 +49,45 @@ public class Utilidades implements Utiles{
        Por lo tanto por mientras para testear el agregar postulantes se pide ingresar skills relacionadas a una sola area, ya que
        este sera ingresado al area con el que encuentre la primera skill en comun.
     */
-    public void agregarPostulante(TrabajadorPostulante postulante){
+    public void agregarPostulante(Postulante postulante){
         
         if (mapaPostulantes.containsKey(postulante.getRut())){
-        System.out.println("Este postulante ya se encuentra en nuestra base de datos.");
-        return;
+            System.out.println("Este postulante ya se encuentra en nuestra base de datos.");
+            return;
         }
-   
-        Utilidades auxUtil = new Utilidades();
-        Comparator<TrabajadorPostulante> comparador = new ComparadorPuntaje();
+        
         Area area;
-        LinkedList<Skill> listaSkillsP = postulante.getSkills();
-        LinkedList<Skill> listaSkillsA;
+        
         Skill skillP;
         Skill skillA;
-        LinkedList listaPostulantes;
         
-        auxUtil.calcularPuntaje(postulante);
+        calcularPuntaje(postulante);
         
         for (int i = 0; i < listaAreas.size(); i++){
             
             area = listaAreas.get(i);
-            listaSkillsA = area.getSkills();
             
-            for (int j = 0; j < listaSkillsA.size(); j++){
+            for (int j = 0; j < area.getLargoSkills(); j++){
                 
-                skillA = listaSkillsA.get(j);
+                skillA = area.getSkill(j);
                 
-                for (int k = 0; k < listaSkillsP.size(); k++){
+                for (int k = 0; k < postulante.getLargoSkills(); k++){
                     
-                    skillP = listaSkillsP.get(k);
+                    skillP = postulante.getSkill(k);
                     
                     if (skillP.getNombre().equals(skillA.getNombre())){
                         
-                        listaPostulantes = area.getPostulantes();
-                        listaPostulantes.add(postulante);
-                        Collections.sort(listaPostulantes, comparador);
-                        
-                        break;
+                        area.add(postulante);
+                        k = postulante.getLargoSkills() + 1;
+                        j = area.getLargoSkills() + 1;
+                        i = listaAreas.size() + 1;
                     }
-                    
-                    break;
                 }
             }
         }
-    
+        
+        // aki falta ordenar la lista
+        
         mapaPostulantes.put(postulante.getRut(), postulante);
         
         System.out.println("Postulante añadido.");
@@ -121,7 +96,7 @@ public class Utilidades implements Utiles{
     public void agregarPostulanteUsuario(){
         
         Scanner scn = new Scanner(System.in);
-        TrabajadorPostulante postulante = new TrabajadorPostulante();
+        Postulante postulante = new Postulante();
         
         System.out.println("Por favor ingrese los siguientes datos del postulante: ");
         System.out.println("Nombre(s): ");
@@ -140,7 +115,7 @@ public class Utilidades implements Utiles{
         System.out.println("Telefono: ");
         postulante.setTelefono(scn.nextLine());
         System.out.println("Años de experiencia: ");
-        postulante.setAñosExperiencia(scn.nextInt());
+        postulante.setExperiencia(scn.nextInt());
         scn.nextLine();
         System.out.println("Institucion Educacional: ");
         postulante.setInstituto(scn.nextLine());
@@ -151,41 +126,46 @@ public class Utilidades implements Utiles{
         
         this.mostrarTodasSkills();
         
-        Skill auxSkill = new Skill();
-        LinkedList<Skill> listaSkills;
-        listaSkills = new LinkedList<>();
         String nombreSkill = "aux";
         
-        while (!nombreSkill.equals("0")){
+        while (!nombreSkill.equals("0")){ // agregar una por una
             nombreSkill = scn.nextLine();
-            if (nombreSkill.equals("0")) break;
-            auxSkill.agregarSkill(nombreSkill, listaSkills);
+            if (nombreSkill.equals("0")){ 
+                break;
+            }
+            
+            Skill nueva = new Skill(nombreSkill);
+            postulante.setSkill(nueva);
         }
         
-        postulante.setSkills(listaSkills);
         
         //Agregar postulante recien creado
         this.agregarPostulante(postulante);   
     }
 
-    public void calcularPuntaje(TrabajadorPostulante postulante){ // Por el momento asigna un numero random, se tiene que crear formula para calcular puntaje
+    public void calcularPuntaje(Postulante postulante){ // Por el momento asigna un numero random, se tiene que crear formula para calcular puntaje
+        
         int puntaje = (int) Math.floor(Math.random()*(100-1+1)+1);
         postulante.setPuntaje(puntaje);
     }
     
     public boolean eliminarPostulante(String rut){
+        
         if (!mapaPostulantes.containsKey(rut)){
             return false;
         }
         mapaPostulantes.remove(rut);
         
+        Postulante postulante;
+        
         for(int i = 0; i < listaAreas.size() ; i++){
-           for(int j = 0; j< listaAreas.get(i).getPostulantes().size(); j++){
-                if(((TrabajadorPostulante)listaAreas.get(i).getPostulantes().get(j)).getRut().equals(rut)){
-                    listaAreas.get(i).removePostulante((TrabajadorPostulante)listaAreas.get(i).getPostulantes().get(j));
+            for(int j = 0; j< listaAreas.get(i).getLargoPostulantes(); j++){
+                postulante = listaAreas.get(i).getPostulante(j);
+                if(postulante.getRut().equals(rut)){
+                    listaAreas.get(i).removePostulante(postulante);
                     break;
                 }
-           }
+            }
         }
         return true;
     }
@@ -197,59 +177,59 @@ public class Utilidades implements Utiles{
             return false;
         }
         
-        TrabajadorPostulante postulante = (TrabajadorPostulante) mapaPostulantes.get(rut);
+        Postulante postulante = (Postulante) mapaPostulantes.get(rut);
         System.out.println("Nombre: " + postulante.getNombre() + " " + postulante.getApellido());
         System.out.println("Rut: " + postulante.getRut());
         System.out.println("Genero: " + postulante.getGenero());
         System.out.println("Edad: " + postulante.getEdad());
         System.out.println("Correo: " + postulante.getCorreo());
         System.out.println("Telefono: " + postulante.getTelefono());
-        System.out.println("Años de experiencia: " + postulante.getAnnosExperiencia());
+        System.out.println("Años de experiencia: " + postulante.getExperiencia());
         System.out.println("Institucion Educacional: " + postulante.getInstituto());
         System.out.println("Puntaje: " + postulante.getPuntaje());
 
-        LinkedList<Skill> skills = postulante.getSkills();
         System.out.print("Skills: ");
-        for (int i = 0; i < skills.size(); i++){
-            Skill skill = skills.get(i);
-            System.out.print(skill.getNombre() + " ");
+        for (int i = 0; i < postulante.getLargoSkills(); i++){
+            System.out.print(postulante.getSkill(i).getNombre() + " ");
         }
+        
         System.out.println();
 
         return true;
     }
     
     public void mostrarPostulantesPorArea(){
+        
         if (mapaPostulantes.isEmpty())
         {
             System.out.println("Aún no se ha agregado ningún postulante.");
             return;
         }
-
-        LinkedList<TrabajadorPostulante> listaPost;
-        TrabajadorPostulante postulante;
+        
+        Postulante postulante;
         
         for (int i = 0; i < listaAreas.size(); i++){
             
             System.out.println(listaAreas.get(i).getNombre().toUpperCase());
-            listaPost = listaAreas.get(i).getPostulantes();
             
-            if(listaPost.isEmpty()){
-                 System.out.println("Esta área no tiene postulantes.");
-                 continue;
+            
+            if(listaAreas.get(i).getLargoPostulantes() == 0){
+                System.out.println("Esta área no tiene postulantes.");
+                continue;
             }
             
             System.out.println("Nombre completo        RUT      Puntaje de postulacion     Expectativa de sueldo");
             
-            for (int j = 0; j < listaPost.size(); j++){
+            for (int j = 0; j < listaAreas.get(i).getLargoPostulantes(); j++){
                 
-                postulante = listaPost.get(j);
-                postulante.mostrarInfoTrabajador();
+                postulante = listaAreas.get(i).getPostulante(j);
+                postulante.mostrarInfo();
             }
         }
     }
 
-    public void editarPostulante(){
+    public void editarPostulante(){ // ojo aqui editar un solo parametro no borrar y agregar de 0
+        
         Scanner scn = new Scanner(System.in);
         String rut;
 
@@ -257,7 +237,7 @@ public class Utilidades implements Utiles{
         rut = scn.nextLine();
         if(mapaPostulantes.containsKey(rut)){
             this.eliminarPostulante(rut);
-            TrabajadorPostulante postulante = new TrabajadorPostulante();
+            Postulante postulante = new Postulante();
             System.out.println("Por favor ingrese los siguientes datos del postulante: ");
             System.out.println("Nombre(s): ");
             postulante.setNombre(scn.nextLine());
@@ -275,7 +255,7 @@ public class Utilidades implements Utiles{
             System.out.println("Telefono: ");
             postulante.setTelefono(scn.nextLine());
             System.out.println("Años de experiencia: ");
-            postulante.setAñosExperiencia(scn.nextInt());
+            postulante.setExperiencia(scn.nextInt());
             scn.nextLine();
             System.out.println("Institucion Educacional: ");
             postulante.setInstituto(scn.nextLine());
@@ -284,30 +264,33 @@ public class Utilidades implements Utiles{
         
         this.mostrarTodasSkills();
         
-        Skill auxSkill = new Skill();
-        LinkedList<Skill> listaSkills;
-        listaSkills = new LinkedList<>();
         String nombreSkill = "aux";
         
         while (!nombreSkill.equals("0")){
             nombreSkill = scn.nextLine();
-            if (nombreSkill.equals("0")) break;
-            auxSkill.agregarSkill(nombreSkill, listaSkills);
+            if (nombreSkill.equals("0")){
+                break;
+            }
+            
+            Skill nueva = new Skill(nombreSkill);
+            postulante.setSkill(nueva);
         }
         
-        postulante.setSkills(listaSkills);
+       
         }
     }
 
     public void agregarPostulantes(LinkedList postulantes){
+        
         for(int i = 0; i< postulantes.size(); i++){
             eliminarPostulante((String) postulantes.get(i));
-            agregarPostulante((TrabajadorPostulante) postulantes.get(i));
+            agregarPostulante((Postulante) postulantes.get(i));
         }
     }
     
-    public TrabajadorPostulante obtenerMejorPostulanteAreas(){
-        TrabajadorPostulante aux = new TrabajadorPostulante();
+    public Postulante obtenerMejorPostulanteAreas(){
+        
+        Postulante aux = new Postulante();
         aux = listaAreas.get(0).top();
         for(int i=0; i< listaAreas.size() -1 ; i++ ){
             if(aux.getPuntaje() <= listaAreas.get(i+1).top().getPuntaje()){
@@ -317,8 +300,9 @@ public class Utilidades implements Utiles{
         return aux;
     }
 
-    public TrabajadorPostulante obtenerPeorPostulanteAreas(){
-        TrabajadorPostulante aux = new TrabajadorPostulante();
+    public Postulante obtenerPeorPostulanteAreas(){
+        
+        Postulante aux = new Postulante();
         aux = listaAreas.get(0).noTop();
         for(int i=0; i< listaAreas.size() -1 ; i++ ){
             if(aux.getPuntaje() >= listaAreas.get(i+1).noTop().getPuntaje()){
@@ -329,52 +313,54 @@ public class Utilidades implements Utiles{
     }
 
     public int obtenerMejorExpectativaAreas(){
-        TrabajadorPostulante aux = new TrabajadorPostulante();
+        
+        Postulante aux = new Postulante();
         aux = listaAreas.get(0).mejorExpectativa();
         for(int i=0; i< listaAreas.size() -1 ; i++ ){
-            if(aux.obtenerSueldo() <= listaAreas.get(i+1).mejorExpectativa().obtenerSueldo()){
+            if(aux.getExpectativa() <= listaAreas.get(i+1).mejorExpectativa().getExpectativa()){
                aux = listaAreas.get(i+1).mejorExpectativa(); 
             }
         }
-        return aux.obtenerSueldo();
+        return aux.getExpectativa();
     }
 
     public int obtenerPeorExpectativaAreas(){
-        TrabajadorPostulante aux = new TrabajadorPostulante();
+        
+        Postulante aux = new Postulante();
         aux = listaAreas.get(0).peorExpectativa();
         for(int i=0; i< listaAreas.size() -1 ; i++ ){
-            if(aux.obtenerSueldo() >= listaAreas.get(i+1).peorExpectativa().obtenerSueldo()){
+            if(aux.getExpectativa() >= listaAreas.get(i+1).peorExpectativa().getExpectativa()){
                aux = listaAreas.get(i+1).peorExpectativa(); 
             }
         }
-        return aux.obtenerSueldo();
+        return aux.getExpectativa();
     }
     
     public void mostrarSobreXPuntaje(int minimo){
+        
         if (mapaPostulantes.isEmpty())
         {
             System.out.println("Aún no se ha agregado ningún postulante.");
             return;
         }
 
-        LinkedList<TrabajadorPostulante> listaPost;
-        TrabajadorPostulante postulante;
+        Postulante postulante;
         int cont;
         
         System.out.println("Los postulantes con un puntaje superior a " + minimo + " son: ");
         
         for (int i = 0; i < listaAreas.size(); i++){
-
-            listaPost = listaAreas.get(i).getPostulantes();
             
-            if(listaPost.isEmpty())
-                 continue;
+            if(listaAreas.get(i).getLargoPostulantes() == 0)
+            {
+                continue;
+            }
             
             System.out.println(listaAreas.get(i).getNombre().toUpperCase());
             cont = 0;
             
-            for (int j = 0; j < listaPost.size(); j++){
-                postulante = listaPost.get(j);
+            for (int j = 0; j < listaAreas.get(i).getLargoPostulantes(); j++){
+                postulante = listaAreas.get(i).getPostulante(j);
                 
                 if(postulante.getPuntaje() > minimo){
                     System.out.println(postulante.getNombre() + " " + postulante.getApellido() + ", " + postulante.getPuntaje() + " puntos.");
@@ -388,33 +374,33 @@ public class Utilidades implements Utiles{
     }
     
     public void sueldoInferiorA(int maximo){
+        
         if (mapaPostulantes.isEmpty())
         {
             System.out.println("Aún no se ha agregado ningún postulante.");
             return;
         }
 
-        LinkedList<TrabajadorPostulante> listaPost;
-        TrabajadorPostulante postulante;
+        Postulante postulante;
         int cont;
         
         System.out.println("Los postulantes con una expectativa de sueldo inferior a " + maximo + " son: ");
         
         for (int i = 0; i < listaAreas.size(); i++){
 
-            listaPost = listaAreas.get(i).getPostulantes();
-            
-            if(listaPost.isEmpty())
-                 continue;
+            if(listaAreas.get(i).getLargoPostulantes() == 0)
+            {
+                continue;
+            }
             
             System.out.println(listaAreas.get(i).getNombre().toUpperCase());
             cont = 0;
             
-            for (int j = 0; j < listaPost.size(); j++){
-                postulante = listaPost.get(j);
+            for (int j = 0; j < listaAreas.get(i).getLargoPostulantes(); j++){
+                postulante = listaAreas.get(i).getPostulante(j);
                 
-                if(postulante.obtenerSueldo() < maximo){
-                    System.out.println(postulante.getNombre() + " " + postulante.getApellido() + ", con una expectativa de sueldo de " + postulante.obtenerSueldo());
+                if(postulante.getExpectativa() < maximo){
+                    System.out.println(postulante.getNombre() + " " + postulante.getApellido() + ", con una expectativa de sueldo de " + postulante.getExpectativa());
                     cont++;
                 }     
             }
@@ -427,6 +413,7 @@ public class Utilidades implements Utiles{
     // Relacionados a Areas
 
     public void agregarArea(Area area){
+        
         listaAreas.add(area);
     }
     
@@ -439,43 +426,45 @@ public class Utilidades implements Utiles{
         System.out.println("Ingrese su maximo total de trabajadores: ");
         int total = scn.nextInt();
         scn.nextLine();
-        
-        Skill auxSkill = new Skill();
-        LinkedList<Skill> lista = new LinkedList<>();
         String nombreSkill = "aux";
         
         System.out.println("Ingrese, una por una, las skills necesarias para trabajar en esta área. Para terminar ingrese '0'.");
         
-        while (!nombreSkill.equals("0")){
-            nombreSkill = scn.nextLine();
-            if (nombreSkill.equals("0")) break;
-            auxSkill.agregarSkill(nombreSkill, lista);
-        }
+        Area area = new Area();
+        area.setNombre(nombre);
+        area.setTotal(total);
         
-        Area nueva = new Area(nombre, total, lista);
-        listaAreas.add(nueva);
+        while (!nombreSkill.equals("0")){ // ojo aki como crear una skill cada vez???
+            nombreSkill = scn.nextLine();
+            if (nombreSkill.equals("0")){
+                break;
+            }
+            
+            Skill nueva = new Skill(nombreSkill);
+            area.setSkill(nueva);
+        }
+    
+        listaAreas.add(area);
         
         System.out.println("Area agregada correctamente.");
     }
     
     public void mostrarTodasSkills(){
     
-        LinkedList<Skill> listaSkills;
         Skill skill;
         
         for (int i = 0; i < listaAreas.size(); i++){
             
-            listaSkills = listaAreas.get(i).getSkills();
-            
-            for (int j = 0; j < listaSkills.size(); j++){
+            for (int j = 0; j < listaAreas.get(i).getLargoSkills(); j++){
                 
-                skill = listaSkills.get(j);
+                skill = listaAreas.get(i).getSkill(j);
                 System.out.println(skill.getNombre());
             }
         }
     }
     
     public void mostrarAreas(){
+        
         if(listaAreas.isEmpty())
         {
             System.out.println("Aún no se ha agregado ninguna área.");
@@ -491,7 +480,6 @@ public class Utilidades implements Utiles{
     
     public void mostrarSkillsPorArea(){
     
-        LinkedList<Skill> listaSkills;
         Skill skill;
         
         for (int i = 0; i < listaAreas.size(); i++){
@@ -499,11 +487,9 @@ public class Utilidades implements Utiles{
             System.out.println(listaAreas.get(i).getNombre().toUpperCase());
             System.out.println();
             
-            listaSkills = listaAreas.get(i).getSkills();
-            
-            for (int j = 0; j < listaSkills.size(); j++){
+            for (int j = 0; j < listaAreas.get(i).getLargoSkills(); j++){
                 
-                skill = listaSkills.get(j);
+                skill = listaAreas.get(i).getSkill(j);
                 System.out.println(skill.getNombre());
             }
             System.out.println();
@@ -514,6 +500,7 @@ public class Utilidades implements Utiles{
         
         System.out.println("De las áreas existentes ingrese el área a la que desea agregar una nueva skill.");
         mostrarAreas();
+        
         Scanner scn = new Scanner(System.in);
         String nombreArea = scn.nextLine();
         boolean flag = false;
@@ -522,19 +509,18 @@ public class Utilidades implements Utiles{
             
             if(nombreArea.equals(listaAreas.get(i).getNombre())){
                 
-                LinkedList lista = listaAreas.get(i).getSkills();
-                
                 System.out.println("Ingrese el nombre de la nueva skill: ");
                 
                 String nombreSkill = scn.nextLine();
-                Skill skillAux = new Skill();
+                Skill skillAux = new Skill(nombreSkill);
                 
-                skillAux.agregarSkill(lista, nombreSkill, i+2);
+                listaAreas.get(i).setSkill(skillAux);
                 System.out.println("Skill agregada correctamente.");
                 flag = true;
                 break;
             }       
         }
+        
         if (flag == false){
             System.out.println("Area inexsistente.");
         } 
@@ -549,7 +535,6 @@ public class Utilidades implements Utiles{
 
         Scanner scn = new Scanner(System.in);
         String eliminar;
-        LinkedList<TrabajadorPostulante> listaPost;
 
         System.out.println("De las siguientes areas seleccione la que desea eliminar:");
 
@@ -561,13 +546,11 @@ public class Utilidades implements Utiles{
 
             if(eliminar.equals(listaAreas.get(i).getNombre())){
 
-                listaPost = listaAreas.get(i).getPostulantes();
+                if(listaAreas.get(i).getLargoPostulantes() != 0){
 
-                if(!listaPost.isEmpty()){
+                    for (int j = 0; j < listaAreas.get(i).getLargoPostulantes(); j++){
 
-                    for (int j = 0; j < listaPost.size(); j++){
-
-                        mapaPostulantes.remove(listaPost.get(j).getRut()); 
+                        mapaPostulantes.remove(listaAreas.get(i).getPostulante(j).getRut()); 
                     }
                 }
 
@@ -578,7 +561,8 @@ public class Utilidades implements Utiles{
         }
     }
 
-    public void editarArea(){
+    public void editarArea(){ // se puede editar mas que el nombre
+        
         if(listaAreas.isEmpty()){
             System.out.println("Aun no existen areas para editar.");
             return;
@@ -604,8 +588,9 @@ public class Utilidades implements Utiles{
     }
 
     // Relacionados a Skill
-
+    /*
     public void editarSkillArea(String nombreArea, String nombreAntiguo, String nombreNuevo){
+        
         LinkedList aux;
         for(int i = 0; i< listaAreas.size(); i++){
             if(listaAreas.get(i).getNombre().equals(nombreArea)){
@@ -621,6 +606,7 @@ public class Utilidades implements Utiles{
         }
     }
     public void eliminarSkillArea(String nombreArea, String nombreSkill){
+        
         LinkedList aux;
         for(int i = 0; i< listaAreas.size(); i++){
             if(listaAreas.get(i).getNombre().equals(nombreArea)){
@@ -634,5 +620,5 @@ public class Utilidades implements Utiles{
                 }
             }
         }
-    }
+    }*/
 }

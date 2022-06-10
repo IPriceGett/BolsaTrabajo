@@ -37,8 +37,8 @@ public interface Utiles {
 
     public void editarArea();
 
-    public void editarSkillArea(String nombreArea, String nombreAntiguo, String nombreNuevo);
+    //public void editarSkillArea(String nombreArea, String nombreAntiguo, String nombreNuevo);
 
-    public void eliminarSkillArea(String nombreArea, String nombreSkill);
+    //public void eliminarSkillArea(String nombreArea, String nombreSkill);
      
 }

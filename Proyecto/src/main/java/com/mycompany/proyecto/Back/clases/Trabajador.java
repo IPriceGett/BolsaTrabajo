@@ -3,89 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.proyecto.Back.clases;
 
 /**
  *
- * @author Ignacio
+ * @author igale
  */
-import java.util.LinkedList;
-
-public abstract class Trabajador extends Persona {
-
-    private LinkedList<Skill> skills; 
-    private int añosExperiencia;
-    private String instituto;
-    private int puntaje;
-
-    public Trabajador(int añosExperiencia, String instituto, LinkedList skills, String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono){
-        super(nombre, apellido, rut, genero, edad, correo, telefono);
-        this.añosExperiencia = añosExperiencia;
-        this.instituto = instituto;
-        this.skills = skills;
-    }
-
-    public Trabajador(int annosExperiencia, String instituto, LinkedList skills){
-        super();
-        this.añosExperiencia = annosExperiencia;
-        this.instituto = instituto;
-        this.skills = skills;
-    }
+public class Trabajador extends Persona {
+    private int añosContratado;
+    private int sueldo;
+    private String posicionDeTrabajo;
 
     public Trabajador(){
         super();
-        this.añosExperiencia = 0;
-        this.instituto = "";
-        this.skills = new LinkedList<>();
-        this.puntaje = 0;
+        this.sueldo = 0;
+        this.añosContratado = 0;
+        this.posicionDeTrabajo = "nula";
+    }
+    public int obtenerSueldo(){ 
+        return this.sueldo; 
+    }
+    public String obtenerPosicion(){ 
+        return this.posicionDeTrabajo; 
     }
     
-    public Trabajador(String nombre, String apellido, String rut,  String genero, int edad, String correo, String telefono, int annosExperiencia, String instituto){
-        super(nombre, apellido, rut, genero, edad, correo, telefono);
-        this.añosExperiencia = annosExperiencia;
-        this.instituto = instituto;
-        this.skills = new LinkedList<>();
-    }
-
-    public String getInstituto(){
-        return this.instituto;
-    }
-
-    public int getAnnosExperiencia(){
-        return this.añosExperiencia;
-    }
-
-    public LinkedList getSkills(){
-        return this.skills;
-    }
-
-    public int getPuntaje(){
-        return this.puntaje;
-    }
-
-    public void setInstituto(String instituto){
-        this.instituto = instituto;
-    }
-
-    public void setAñosExperiencia(int añosExperiencia){
-        this.añosExperiencia = añosExperiencia;
-    }
-
-    public void setSkills(LinkedList skills){
-        this.skills = skills;
-    }
-
-    public void setPuntaje(int puntaje){
-        this.puntaje = puntaje;
-    }
-    
-    abstract public int obtenerSueldo();
-    abstract public String obtenerPosicion();
-    
-    public void mostrarInfoTrabajador(){
-        System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut() + " |           " + this.getPuntaje());
+    public void mostrarInfo(){
+        System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut() + " | " + añosContratado + " | " + sueldo);
         return;
     }
-
 }

@@ -15,27 +15,38 @@ public class InicialEnDuro implements Data{
     public Utilidades cargaInicial(){
 
         Utilidades auxUtil = new Utilidades();
-       
-        //Para no tener que ingresar areas y postulantes a mano, descomentar el codigo a continuacion
-        
-        Skill auxSkill = new Skill();
 
         Area informatica = new Area("Informatica", 10, 10);
         Area finanzas = new Area("Finanzas", 10, 10);
         Area marketing = new Area("Marketing", 10, 10);
 
-        auxSkill.agregarSkill(informatica.getSkills(),1,"Python");
-        auxSkill.agregarSkill(informatica.getSkills(),2,"SQL");
-        auxSkill.agregarSkill(informatica.getSkills(),3,"NodeJs");
-        auxSkill.agregarSkill(informatica.getSkills(),4,"Angular");
-
-        auxSkill.agregarSkill(finanzas.getSkills(),5,"Contador");
-        auxSkill.agregarSkill(finanzas.getSkills(),6,"Excel");
-    
-        auxSkill.agregarSkill(marketing.getSkills(),7,"Publicidad");
-        auxSkill.agregarSkill(marketing.getSkills(),8,"Photoshop");
-
+        Skill python = new Skill();
+        python.setNombre("Python");
+        informatica.setSkill(python);
+        Skill sql = new Skill();
+        sql.setNombre("SQL");
+        informatica.setSkill(sql);
+        Skill nodejs = new Skill();
+        nodejs.setNombre("NodeJs");
+        informatica.setSkill(nodejs);
+        Skill angular = new Skill();
+        angular.setNombre("Angular");
+        informatica.setSkill(angular);
         
+        Skill contabilidad = new Skill();
+        contabilidad.setNombre("Contabilidad");
+        finanzas.setSkill(contabilidad);
+        Skill excel = new Skill();
+        excel.setNombre("Excel");
+        finanzas.setSkill(excel);
+        
+        Skill publicidad = new Skill();
+        publicidad.setNombre("Publicidad");
+        marketing.setSkill(publicidad);
+        Skill photoshop = new Skill();
+        photoshop.setNombre("Photoshop");
+        marketing.setSkill(photoshop);
+    
         auxUtil.agregarArea(informatica);
         auxUtil.agregarArea(finanzas);
         auxUtil.agregarArea(marketing);
@@ -44,75 +55,42 @@ public class InicialEnDuro implements Data{
         System.out.println("Agregando postulantes de prueba.");
         System.out.println();
         
-        TrabajadorPostulante postulante1 = new TrabajadorPostulante("Juanino", "Perezinho", "9876543-2", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV", "Banco", "jefe de piso", 500000, "sueldo");
-        auxSkill.agregarSkill(postulante1.getSkills(), 1, "Python");
-        auxSkill.agregarSkill(postulante1.getSkills(), "SQL", 2);
+        Postulante postulante1 = new Postulante("Juanino", "Perezinho", "9876543-2", "M", 35, "juan.perez25@gmail.com", "988776655", 8, "PUCV", 500000);
+        postulante1.setSkill(python);
+        postulante1.setSkill(sql);
          
         auxUtil.agregarPostulante(postulante1);
         
-        TrabajadorPostulante postulante2 = new TrabajadorPostulante("Catalina", "Herrera", "8234456-9", "F", 35, "cata.herrera35@gmail.com", "988776655", 12, "USM", "Ripley", "Gerente", 4000000, "familia");
-        auxSkill.agregarSkill(postulante2.getSkills(), 5, "Contador");
-        auxSkill.agregarSkill(postulante2.getSkills(), "Excel", 6);
-
+        Postulante postulante2 = new Postulante("Catalina", "Herrera", "8234456-6", "F", 35, "cata.herrera35@gmail.com", "988776655", 12, "USM", 4000000);
+        postulante2.setSkill(contabilidad);
+        postulante2.setSkill(excel);
+        
         auxUtil.agregarPostulante(postulante2);
         
-        TrabajadorPostulante postulante3 = new TrabajadorPostulante("Benjamin", "Barraza", "11475895-3", "M", 35, "juan.perez25@gmail.com", "988776655", 10, "PUCV", "Casino", "jefe en cyberseguridad", 1300000, "ambiente");
-        auxSkill.agregarSkill(postulante3.getSkills(), 7, "Publicidad");
-        auxSkill.agregarSkill(postulante3.getSkills(), "Photoshop", 8);
+        Postulante postulante3 = new Postulante("Benjamin", "Barraza", "11475895-2", "M", 35, "juan.perez25@gmail.com", "988776655", 10, "PUCV", 1300000);
+        postulante3.setSkill(publicidad);
+        postulante3.setSkill(photoshop);
 
         auxUtil.agregarPostulante(postulante3);
         
-        TrabajadorPostulante postulante4 = new TrabajadorPostulante("Sofia", "Ortega", "6748594-2", "F", 60, "sofia.ortega@gmail.com", "9384758596", 40, "UC", "Paris", "jefe", 3700000, "sueldo");
-        auxSkill.agregarSkill(postulante4.getSkills(), 1, "Python");
-        auxSkill.agregarSkill(postulante4.getSkills(), "NodeJs", 3);
+        Postulante postulante4 = new Postulante("Sofia", "Ortega", "6748594-2", "F", 60, "sofia.ortega@gmail.com", "9384758596", 40, "UC", 3700000);
+        postulante4.setSkill(python);
+        postulante4.setSkill(nodejs);
 
         auxUtil.agregarPostulante(postulante4);
         
-        TrabajadorPostulante postulante5 = new TrabajadorPostulante("Patricio", "Castillo", "14465845-1", "M", 57, "pato.castillo@gmail.com", "975834758", 28, "UCH", "Movistar", "empleado", 3400000, "sueldo");
-        auxSkill.agregarSkill(postulante5.getSkills(), 2, "SQL");
-        auxSkill.agregarSkill(postulante5.getSkills(), "Angular", 4);
+        Postulante postulante5 = new Postulante("Patricio", "Castillo", "14465845-1", "M", 57, "pato.castillo@gmail.com", "975834758", 28, "UCH", 3400000);
+        postulante5.setSkill(sql);
+        postulante5.setSkill(angular);
 
         auxUtil.agregarPostulante(postulante5);
         
-        TrabajadorPostulante postulante6 = new TrabajadorPostulante("Benjamin", "Barraza", "8766987-2", "M", 35, "juan.perez25@gmail.com", "988776655", 10, "PUCV", "Casino", "jefe en cyberseguridad", 1300000, "ambiente");
-        auxSkill.agregarSkill(postulante6.getSkills(), 2, "SQL");
-        auxSkill.agregarSkill(postulante6.getSkills(), "Angular", 4);
+        Postulante postulante6 = new Postulante("Benjamin", "Barraza", "8766987-2", "M", 35, "juan.perez25@gmail.com", "988776655", 10, "PUCV", 1300000);
+        postulante6.setSkill(angular);
+        postulante6.setSkill(python);
+        postulante6.setSkill(sql);
 
         auxUtil.agregarPostulante(postulante6);
-        
-         TrabajadorPostulante postulante7 = new TrabajadorPostulante("Diego", "Maradona", "10765432-2", "M", 35, "diego.maradona10@gmail.com", "988576652", 10, "UBA", "Boca", "jugador", 1000000, "Ambiente");
-        auxSkill.agregarSkill(postulante7.getSkills(), 5, "Contador");
-        auxSkill.agregarSkill(postulante7.getSkills(), "Excel", 6);
-        auxSkill.agregarSkill(postulante7.getSkills(), 7, "Publicidad");
-        auxSkill.agregarSkill(postulante7.getSkills(), "Photoshop", 8);
-         
-        auxUtil.agregarPostulante(postulante7);
-        
-         TrabajadorPostulante postulante8 = new TrabajadorPostulante("Lucas", "Chacana", "20332976-2", "M", 21, "lucas.chacana69@gmail.com", "978726659", 4, "PUCV", "Falabella", "empleado", 700000, "sueldo");
-        auxSkill.agregarSkill(postulante8.getSkills(), 5, "Contador");
-        auxSkill.agregarSkill(postulante8.getSkills(), "Excel", 6);
-         
-        auxUtil.agregarPostulante(postulante8);
-        
-         TrabajadorPostulante postulante9 = new TrabajadorPostulante("Amanda", "Ocaranza", "2176543-k", "F", 20, "amanda.ocaranza@gmail.com", "923776655", 2, "UNAB", "Banco", "empleado", 430000, "Ubicacion");
-        auxSkill.agregarSkill(postulante9.getSkills(), 7, "Publicidad");
-        auxSkill.agregarSkill(postulante9.getSkills(), "Photoshop", 8);
-        
-         
-        auxUtil.agregarPostulante(postulante9);
-        
-        TrabajadorPostulante postulante10 = new TrabajadorPostulante("Antonio", "Mateluna", "2176543-k", "M", 22, "antonio.mateluna@gmail.com", "923556699", 2, "UST", "Doggis", "empleado", 500000, "Ubicacion");
-        auxSkill.agregarSkill(postulante10.getSkills(), 7, "Publicidad");
-        auxSkill.agregarSkill(postulante10.getSkills(), "Photoshop", 8);
-        
-         
-        auxUtil.agregarPostulante(postulante10);
-        
-        TrabajadorPostulante postulante11 = new TrabajadorPostulante("Camila", "Sanchez", "23445326-0", "F", 24, "cata.sanchez35@gmail.com", "988776655", 4, "USS", "Ripley", "Gerente", 9000000, "Mudanza");
-        auxSkill.agregarSkill(postulante11.getSkills(), 5, "Contador");
-        auxSkill.agregarSkill(postulante11.getSkills(), "Excel", 6);
-
-        auxUtil.agregarPostulante(postulante11);
         
         System.out.println();
         

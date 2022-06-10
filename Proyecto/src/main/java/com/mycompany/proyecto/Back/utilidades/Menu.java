@@ -135,7 +135,7 @@ public void menuUsuario(Utilidades utiles){
                         skill = scn.nextLine();
                         System.out.println("Ingrese el nuevo nombre de la skill");
                         nuevo = scn.nextLine();
-                        utiles.editarSkillArea(area, skill, nuevo);
+                        //utiles.editarSkillArea(area, skill, nuevo);
 
                         break; 
                     }
@@ -147,14 +147,14 @@ public void menuUsuario(Utilidades utiles){
                         System.out.println("De la lista mostrada arriba ingrese el nombre del area y la skill que desea eliminar (Uno a uno)");
                         area = scn.nextLine();
                         skill = scn.nextLine();
-                        utiles.eliminarSkillArea(area, skill);
+                        //utiles.eliminarSkillArea(area, skill);
 
                         break; 
                     }
                     
                     case 14:
                     {
-                        TrabajadorPostulante postulante;
+                        Postulante postulante;
                         postulante = utiles.obtenerMejorPostulanteAreas();
                         System.out.println("El/La mejor postulante es " + postulante.getNombre() + " " + postulante.getApellido() + ", RUT " + postulante.getRut() + ", con un puntaje de " + postulante.getPuntaje() + ".");
 
@@ -193,7 +193,9 @@ public void menuUsuario(Utilidades utiles){
                     }
 
                     default:
+                    {
                         return;
+                    }
                 }
                 
                System.out.println(); 
