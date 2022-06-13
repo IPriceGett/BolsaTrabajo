@@ -116,4 +116,19 @@ public abstract class Persona {
         System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut());
         return;
     }
+    
+    public void removeSkill(int index){
+        this.skills.remove(index);
+    }
+    
+    public void mostrarParametrosEnumerados(){
+        System.out.println("1.- Nombre");
+        System.out.println("2.- Apellido");
+        System.out.println("3.- Rut");
+        System.out.println("4.- Genero");
+        System.out.println("5.- Edad");
+        System.out.println("6.- Correo");
+        System.out.println("7.- Telefono");
+        System.out.println("8.- Skills");
+    }
 }

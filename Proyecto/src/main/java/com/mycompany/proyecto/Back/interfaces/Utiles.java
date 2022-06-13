@@ -20,11 +20,11 @@ public interface Utiles {
     
     public List<Postulante> obtenerPostulantes();
     
-    public Postulante crearPostulanteFront(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto, Skill skill);
+    public Postulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto, Skill skill);
     
     public void agregarPostulante(Postulante postulante);
     
-    public void agregarPostulanteUsuario();
+    public void agregarPostulante();
 
     public boolean buscarPostulante(String rut);
 

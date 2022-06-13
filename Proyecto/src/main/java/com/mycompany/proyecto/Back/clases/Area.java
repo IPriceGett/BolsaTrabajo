@@ -131,5 +131,77 @@ public class Area {
         }
         return aux;
     }
+    
+    public void mostrarSkills(){
+        System.out.println(this.getNombre().toUpperCase());
+        System.out.println();
+        
+        System.out.println("Nombre          |          Valor");
+        for (int i = 0; i < this.getLargoSkills(); i++){
+                this.skills.get(i).mostrarInfo();
+            }
+            System.out.println();
+    }
+    
+    public void mostrarPostulantes(){
+        System.out.println(this.getNombre().toUpperCase());
+     
+        System.out.println("Nombre completo        RUT      Puntaje de postulacion     Expectativa de sueldo");
+
+        for (int j = 0; j < this.getLargoPostulantes(); j++){
+
+            this.getPostulante(j).mostrarInfo();
+        }
+        System.out.println();
+    }
+    
+    public void mostrarSobreXPuntaje(int minimo){
+        
+        Postulante postulante;
+        int cont;
+        
+        System.out.println(this.getNombre().toUpperCase());
+        cont = 0;
+
+        for (int j = 0; j < this.getLargoPostulantes(); j++){
+            postulante = this.getPostulante(j);
+
+            if(postulante.getPuntaje() > minimo){
+                System.out.println(postulante.getNombre() + " " + postulante.getApellido() + ", " + postulante.getPuntaje() + " puntos.");
+                cont++;
+            }     
+        }
+
+        if(cont == 0)
+            System.out.println("No existen postulantes que cumplan el requisito.");
+    }
+    
+    public void sueldoInferiorA(int maximo){
+        
+        Postulante postulante;
+        int cont;
+        
+        System.out.println(this.getNombre().toUpperCase());
+        cont = 0;
+
+        for (int j = 0; j < this.getLargoPostulantes(); j++){
+            postulante = this.getPostulante(j);
+
+            if(postulante.getExpectativa() < maximo){
+                System.out.println(postulante.getNombre() + " " + postulante.getApellido() + ", con una expectativa de sueldo de " + postulante.getExpectativa());
+                cont++;
+            }     
+        }
+
+        if(cont == 0)
+            System.out.println("No existen postulantes que cumplan el requisito.");
+    }
+    
+    public void mostrarParametrosEnumerados(){
+        System.out.println("1.- Nombre");
+        System.out.println("2.- Cantidad de vacantes");
+        System.out.println("3.- Cantiad total de puestos");
+        System.out.println("4.- Skills");
+    }
 
 }

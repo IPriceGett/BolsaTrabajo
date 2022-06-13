@@ -123,7 +123,7 @@ public class TPostulantes implements TableModel{
                 break;
             }
             case 7:{
-                valor =  Integer.toString(p.getExpectativa());
+                valor =  Integer.toString(p.getExperiencia());
                 break;
             }
             case 8:{
@@ -136,17 +136,17 @@ public class TPostulantes implements TableModel{
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void addTableModelListener(TableModelListener l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void removeTableModelListener(TableModelListener l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

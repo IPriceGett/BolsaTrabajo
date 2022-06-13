@@ -247,7 +247,7 @@ public class AgregarPostulante2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Skill nueva = new Skill(skill.getText());
-        instancia.agregarPostulante((instancia.crearPostulanteFront(nombre.getText(), apellido.getText(), rut.getText(),genero.getText(), parseInt(edad.getText()),correo.getText(), telefono.getText(), parseInt(exp.getText()), insti.getText(),nueva)));
+        instancia.agregarPostulante((instancia.crearPostulante(nombre.getText(), apellido.getText(), rut.getText(),genero.getText(), parseInt(edad.getText()),correo.getText(), telefono.getText(), parseInt(exp.getText()), insti.getText(),nueva)));
         Default2 def = new Default2(instancia);
         def.setVisible(true);
         this.dispose();        // TODO add your handling code here:

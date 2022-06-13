@@ -56,4 +56,11 @@ public class Trabajador extends Persona {
         System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut() + " | " + añosContratado + " | " + sueldo);
         return;
     }
+    
+    public void mostrarParametrosEnumerados(){
+        super.mostrarParametrosEnumerados();
+        System.out.println("9.- Años contratado");
+        System.out.println("10.- Sueldo");
+        System.out.println("11.- Posicion de trabajo");
+    }
 }

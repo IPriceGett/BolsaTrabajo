@@ -51,5 +51,14 @@ public class Skill {
     public int getValor(){
         return this.valor;
     }
+    
+    public void mostrarParametrosEnumerados(){
+        System.out.println("1.- Nombre");
+        System.out.println("2.- Valor");
+    }
+    
+    public void mostrarInfo(){
+        System.out.println(this.nombre + "           " + this.valor);
+    }
 
 }

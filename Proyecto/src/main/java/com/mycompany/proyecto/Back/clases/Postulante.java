@@ -70,5 +70,15 @@ public class Postulante extends Persona {
         System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut() + " |           " + this.getPuntaje() + "           |          " + expectativaSueldo);
         return;
     }
-
+    
+    public void mostrarParametrosEnumerados(){
+        super.mostrarParametrosEnumerados();
+        System.out.println("9.- Años de experiencia");
+        System.out.println("10.- Instituto educacional");
+        System.out.println("11.- Expectativa de sueldo");
+    }
+    
+    public void removeSkill(int index){
+        super.removeSkill(index);
+    }
 }
