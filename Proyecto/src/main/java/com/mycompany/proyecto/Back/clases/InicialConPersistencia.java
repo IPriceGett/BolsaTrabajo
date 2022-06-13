@@ -12,9 +12,19 @@ import com.mycompany.proyecto.Back.utilidades.*;
  * @author igale
  */
 public class InicialConPersistencia implements Data {  
+    @Override
     public Utilidades cargaInicial(){ // metodo para conexion a base de datos y hacer la carga de datos
         return null;
     }
+    @Override
     public void mostrarOpcionesIniciales(){}  // metodo para mostrar opciones iniciales de la base de datos  
+    @Override
     public void inicializar(){} // metodo para iniciar app */
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public Utilidades obtenerInstancia(){ return new Utilidades();}
 }

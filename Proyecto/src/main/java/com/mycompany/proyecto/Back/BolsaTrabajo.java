@@ -5,13 +5,12 @@
  */
 
 package com.mycompany.proyecto.Back;
-import com.mycompany.proyecto.Back.clases.*;
-import com.mycompany.proyecto.Back.utilidades.*;
+import com.mycompany.proyecto.Front.Bienvenida2;
 
 
 public class BolsaTrabajo{
     public static void main(String[] args){
-        InicialEnDuro data = new InicialEnDuro();
-        data.inicializar();
+        Bienvenida2 start = new Bienvenida2();
+        start.setVisible(true);
     }
 }

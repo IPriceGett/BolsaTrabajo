@@ -12,6 +12,7 @@ import com.mycompany.proyecto.Back.interfaces.*;
  * @author igale
  */
 public class InicialEnDuro implements Data{
+    @Override
     public Utilidades cargaInicial(){
 
         Utilidades auxUtil = new Utilidades();
@@ -89,6 +90,7 @@ public class InicialEnDuro implements Data{
         return auxUtil;
     }
 
+    @Override
     public void mostrarOpcionesIniciales(){
        
         System.out.println("Elija una opcion para continuar: ");
@@ -111,11 +113,19 @@ public class InicialEnDuro implements Data{
         System.out.println("0.- Salir");
     }
     
+    @Override
     public void inicializar(){
 
         Utilidades auxUtil = new Utilidades();
         auxUtil = cargaInicial();
         Menu menu = new Menu();
         menu.menuUsuario(auxUtil);
+    }
+    
+    @Override
+    public Utilidades obtenerInstancia(){
+        Utilidades auxUtil = new Utilidades();
+        auxUtil = cargaInicial();
+        return auxUtil;
     }
 }

@@ -15,4 +15,5 @@ public interface Data {
     public Utilidades cargaInicial();
     public void mostrarOpcionesIniciales();
     public void inicializar();
+    public Utilidades obtenerInstancia();
 }

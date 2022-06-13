@@ -9,6 +9,7 @@ import com.mycompany.proyecto.Back.clases.*;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -16,7 +17,13 @@ import java.util.LinkedList;
  * @author igale
  */
 public interface Utiles {
-
+    
+    public List<Postulante> obtenerPostulantes();
+    
+    public Postulante crearPostulanteFront(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto, Skill skill);
+    
+    public void agregarPostulante(Postulante postulante);
+    
     public void agregarPostulanteUsuario();
 
     public boolean buscarPostulante(String rut);

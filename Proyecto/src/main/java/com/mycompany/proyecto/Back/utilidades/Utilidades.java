@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Comparator;
+import java.util.List;
 
 
 public class Utilidades implements Utiles{
@@ -37,6 +38,23 @@ public class Utilidades implements Utiles{
         postulante.setTelefono(telefono);
         postulante.setExperiencia(experiencia);
         postulante.setInstituto(instituto);
+
+        return postulante; 
+    }
+    
+    public Postulante crearPostulanteFront(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto, Skill skill){
+        
+        Postulante postulante = new Postulante();
+        postulante.setNombre(nombre);
+        postulante.setApellido(apellido);
+        postulante.setRut(rut);
+        postulante.setGenero(genero);
+        postulante.setEdad(edad);
+        postulante.setCorreo(correo);
+        postulante.setTelefono(telefono);
+        postulante.setExperiencia(experiencia);
+        postulante.setInstituto(instituto);
+        postulante.setSkill(skill);
 
         return postulante; 
     }
@@ -621,4 +639,9 @@ public class Utilidades implements Utiles{
             }
         }
     }*/
+    
+    public List<Postulante> obtenerPostulantes (){
+        List<Postulante> listOfValue = new LinkedList<>(mapaPostulantes.values());
+        return listOfValue;
+    }
 }
