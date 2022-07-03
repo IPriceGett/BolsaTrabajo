@@ -5,6 +5,7 @@
  */
 
 package com.mycompany.proyecto.Back.utilidades;
+import com.mycompany.proyecto.Back.excepciones.*;
 import com.mycompany.proyecto.Back.clases.*;
 import com.mycompany.proyecto.Back.interfaces.*;
 
@@ -18,6 +19,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Utilidades implements Utiles{
@@ -25,18 +28,22 @@ public class Utilidades implements Utiles{
     private HashMap<String, Postulante> mapaPostulantes = new HashMap<String, Postulante>(); 
     private LinkedList<Area> listaAreas = new LinkedList<Area>(); 
 
-    public Postulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto){
-        
+    public Postulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto) throws BackExceptions{
         Postulante postulante = new Postulante();
-        postulante.setNombre(nombre);
-        postulante.setApellido(apellido);
-        postulante.setRut(rut);
-        postulante.setGenero(genero);
-        postulante.setEdad(edad);
-        postulante.setCorreo(correo);
-        postulante.setTelefono(telefono);
-        postulante.setExperiencia(experiencia);
-        postulante.setInstituto(instituto);
+        try{
+            postulante.setNombre(nombre);
+            postulante.setApellido(apellido);
+            postulante.setRut(rut);
+            postulante.setGenero(genero);
+            postulante.setEdad(edad);
+            postulante.setCorreo(correo);
+            postulante.setTelefono(telefono);
+            postulante.setExperiencia(experiencia);
+            postulante.setInstituto(instituto);
+        }catch(Exception ex){
+            System.out.println("Error al crear, revise sus campos e ingrese correctamente");
+            throw new BackExceptions(ex.getMessage());
+        }
 
         return postulante; 
     }
@@ -44,16 +51,25 @@ public class Utilidades implements Utiles{
     public Postulante crearPostulante(String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto, Skill skill){
         
         Postulante postulante = new Postulante();
-        postulante.setNombre(nombre);
-        postulante.setApellido(apellido);
-        postulante.setRut(rut);
-        postulante.setGenero(genero);
-        postulante.setEdad(edad);
-        postulante.setCorreo(correo);
-        postulante.setTelefono(telefono);
-        postulante.setExperiencia(experiencia);
-        postulante.setInstituto(instituto);
-        postulante.setSkill(skill);
+        try{
+            postulante.setNombre(nombre);
+            postulante.setApellido(apellido);
+            postulante.setRut(rut);
+            postulante.setGenero(genero);
+            postulante.setEdad(edad);
+            postulante.setCorreo(correo);
+            postulante.setTelefono(telefono);
+            postulante.setExperiencia(experiencia);
+            postulante.setInstituto(instituto);
+            postulante.setSkill(skill);
+        }catch(Exception ex){
+            System.out.println("Error al crear, revise sus campos e ingrese correctamente");
+            try {
+                throw new BackExceptions(ex.getMessage());
+            } catch (BackExceptions ex1) {
+                Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
 
         return postulante; 
     }
@@ -647,14 +663,17 @@ public class Utilidades implements Utiles{
             for (int i = 0; i < listaAreas.size() ; i++) {
                 if(nombre.toLowerCase().equals(listaAreas.get(i).getNombre().toLowerCase())){
                     int opcion;
-                    System.out.println("Ingrese el numero del dato que desea editar. Para terminar ingrese '0': ");
-                    listaAreas.get(i).mostrarParametrosEnumerados();
+                    
 
                     do{
+                        System.out.println("Ingrese el numero del dato que desea editar. Para terminar ingrese '0': ");
+                        listaAreas.get(i).mostrarParametrosEnumerados();
+                    
                         opcion = scn.nextInt();
                         scn.nextLine();
                         String auxStr;
                         int auxInt;
+                        
                         switch(opcion){
                             case 1:
                             {
@@ -684,7 +703,7 @@ public class Utilidades implements Utiles{
                             }
                             case 4:
                             {   
-                                System.out.println("Ingrese el numero de la skill que desea editar. Para terminar ingrese '999': ");
+                                System.out.println("Ingrese el numero de la skill que desea editar: ");
                                 
                                 for (int j = 0; j < listaAreas.get(i).getLargoSkills(); j++)
                                 {
@@ -692,24 +711,31 @@ public class Utilidades implements Utiles{
                                 }
                                 int index = scn.nextInt();
                                 scn.nextLine();
-                                if(index == 999) break;
                                 index--;
                                 Skill skill = listaAreas.get(i).getSkill(index);
-                                
-                                System.out.println("Ingrese el numero del parametro que desea editar. Para terminar ingrese '0': ");
-                                skill.mostrarParametrosEnumerados();
                                 
                                 int opcion2; 
                                 
                                 do{
+                                    System.out.println("Ingrese el numero del parametro que desea editar. Para terminar ingrese '0': ");
+                                    skill.mostrarParametrosEnumerados();
+                                
                                     opcion2 = scn.nextInt();
                                     scn.nextLine();
+                                    System.out.println(opcion2);
                                     
                                     switch(opcion2){
-                                        case 1:{
-                                            
+                                        case 1:
+                                        {
+                                            System.out.println("Ingrese el nuevo nombre para la skill: ");
+                                            String nuevoNombre;
+                                            nuevoNombre = scn.nextLine();
+                                            skill.setNombre(nuevoNombre);
+                                            System.out.println("nombre editado correctamente");
+                                            break;
                                         }
-                                        case 2:{
+                                        case 2:
+                                        {
                                             System.out.println("Ingrese la valor de la skill para el calculo del puntaje: ");
                                             auxInt = scn.nextInt();
                                             scn.nextLine();
@@ -718,10 +744,16 @@ public class Utilidades implements Utiles{
                                             break;
                                         }
                                     }
+                                    
+                                    //System.out.println();
+                                    
                                 }while(opcion2 != 0);
                                 
                             }         
                         }
+                        
+                        System.out.println();
+                        
                     }while(opcion != 0);
                 }
             }

@@ -5,6 +5,7 @@
  */
 package com.mycompany.proyecto.Front;
 
+import com.mycompany.proyecto.Back.excepciones.FrontExceptions;
 import com.mycompany.proyecto.Back.interfaces.Utiles;
 import com.mycompany.proyecto.Back.utilidades.Utilidades;
 import javax.swing.DefaultListModel;
@@ -19,10 +20,17 @@ public class VisualizarPostulantes extends javax.swing.JFrame {
     /**
      * Creates new form VisualizarPostulantes
      */
-    public VisualizarPostulantes(Utilidades instancia) {
+    public VisualizarPostulantes(Utilidades instancia) throws FrontExceptions {
         this.instancia = instancia;
         model = new TPostulantes(instancia);
         initComponents();
+        try{
+            tab.setModel(model);
+        }catch(Exception ex){
+            System.out.println("Error al cargar data");
+            throw new FrontExceptions(ex.getMessage());
+        }
+
     }
     
     public VisualizarPostulantes() {
@@ -41,7 +49,6 @@ public class VisualizarPostulantes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tab = new javax.swing.JTable();
 
@@ -54,13 +61,6 @@ public class VisualizarPostulantes extends javax.swing.JFrame {
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Mostrar Postulantes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -82,9 +82,7 @@ public class VisualizarPostulantes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(136, 136, 136))
             .addGroup(layout.createSequentialGroup()
@@ -101,9 +99,7 @@ public class VisualizarPostulantes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(back)
-                    .addComponent(jButton1))
+                .addComponent(back)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -116,10 +112,6 @@ public class VisualizarPostulantes extends javax.swing.JFrame {
         def.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        tab.setModel(model);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,7 +150,6 @@ public class VisualizarPostulantes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tab;

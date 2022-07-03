@@ -6,8 +6,11 @@
 package com.mycompany.proyecto.Front;
 
 import com.mycompany.proyecto.Back.clases.Skill;
+import com.mycompany.proyecto.Back.excepciones.FrontExceptions;
 import com.mycompany.proyecto.Back.utilidades.Utilidades;
 import static java.lang.Integer.parseInt;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -246,8 +249,17 @@ public class AgregarPostulante2 extends javax.swing.JFrame {
     }//GEN-LAST:event_telefonoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Skill nueva = new Skill(skill.getText());
-        instancia.agregarPostulante((instancia.crearPostulante(nombre.getText(), apellido.getText(), rut.getText(),genero.getText(), parseInt(edad.getText()),correo.getText(), telefono.getText(), parseInt(exp.getText()), insti.getText(),nueva)));
+        try{
+            Skill nueva = new Skill(skill.getText());
+            instancia.agregarPostulante((instancia.crearPostulante(nombre.getText(), apellido.getText(), rut.getText(),genero.getText(), parseInt(edad.getText()),correo.getText(), telefono.getText(), parseInt(exp.getText()), insti.getText(),nueva)));
+        }catch(Exception ex){
+            System.out.println("Error al agregar postulante nuevo");
+            try {
+                throw new FrontExceptions(ex.getMessage());
+            } catch (FrontExceptions ex1) {
+                Logger.getLogger(AgregarPostulante2.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
         Default2 def = new Default2(instancia);
         def.setVisible(true);
         this.dispose();        // TODO add your handling code here:
