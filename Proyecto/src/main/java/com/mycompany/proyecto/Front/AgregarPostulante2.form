@@ -66,7 +66,7 @@
                                       <Component id="apellido" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="120" max="32767" attributes="0"/>
+                              <EmptySpace pref="134" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -74,13 +74,15 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="correo" max="32767" attributes="0"/>
-                          <Component id="telefono" max="32767" attributes="0"/>
-                          <Component id="insti" max="32767" attributes="0"/>
-                          <Component id="skill" max="32767" attributes="0"/>
-                          <Component id="exp" alignment="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="correo" max="32767" attributes="0"/>
+                              <Component id="telefono" max="32767" attributes="0"/>
+                              <Component id="insti" max="32767" attributes="0"/>
+                              <Component id="skill" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="exp" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -255,7 +257,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="exp">
       <Properties>
-        <Property name="text" type="java.lang.String" value="a&#xf1;os"/>
+        <Property name="text" type="java.lang.String" value="anos"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="insti">

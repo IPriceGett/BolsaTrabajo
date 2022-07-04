@@ -126,7 +126,7 @@ public class Utilidades implements Utiles{
         
         mapaPostulantes.put(postulante.getRut(), postulante);
         
-        System.out.println("Postulante añadido.");
+        System.out.println("Postulante anadido.");
     }
     
     public void agregarPostulante(){ // para agregar postulante por entrada en pantalla
@@ -150,7 +150,7 @@ public class Utilidades implements Utiles{
         postulante.setCorreo(scn.nextLine());
         System.out.println("Telefono: ");
         postulante.setTelefono(scn.nextLine());
-        System.out.println("Años de experiencia: ");
+        System.out.println("Anos de experiencia: ");
         postulante.setExperiencia(scn.nextInt());
         scn.nextLine();
         System.out.println("Institucion Educacional: ");
@@ -220,7 +220,7 @@ public class Utilidades implements Utiles{
         System.out.println("Edad: " + postulante.getEdad());
         System.out.println("Correo: " + postulante.getCorreo());
         System.out.println("Telefono: " + postulante.getTelefono());
-        System.out.println("Años de experiencia: " + postulante.getExperiencia());
+        System.out.println("Anos de experiencia: " + postulante.getExperiencia());
         System.out.println("Institucion Educacional: " + postulante.getInstituto());
         System.out.println("Puntaje: " + postulante.getPuntaje());
 
@@ -383,11 +383,11 @@ public class Utilidades implements Utiles{
                     }
                     case 9:
                     {
-                        System.out.println("Ingrese los años de experiencia: ");
+                        System.out.println("Ingrese los anos de experiencia: ");
                         auxInt = scn.nextInt();
                         scn.nextLine();
                         postulante.setExperiencia(auxInt);
-                        System.out.println("Años de experiencia editados correctamente");
+                        System.out.println("Anos de experiencia editados correctamente");
                         break;
                     }
                     case 10:
@@ -760,40 +760,6 @@ public class Utilidades implements Utiles{
         }
     }
 
-    // Relacionados a Skill
-    /*
-    public void editarSkillArea(String nombreArea, String nombreAntiguo, String nombreNuevo){
-        
-        LinkedList aux;
-        for(int i = 0; i< listaAreas.size(); i++){
-            if(listaAreas.get(i).getNombre().equals(nombreArea)){
-                for(int j = 0; j< listaAreas.get(i).getSkills().size(); j++){
-                    if(((Skill)listaAreas.get(i).getSkills().get(j)).getNombre().equals(nombreAntiguo)){
-                       ((Skill)listaAreas.get(i).getSkills().get(j)).setNombre(nombreNuevo);
-                       aux = listaAreas.get(i).getPostulantes();
-                       listaAreas.get(i).getPostulantes().clear();
-                       agregarPostulantes(aux);
-                    }
-                }
-            }
-        }
-    }
-    public void eliminarSkillArea(String nombreArea, String nombreSkill){
-        
-        LinkedList aux;
-        for(int i = 0; i< listaAreas.size(); i++){
-            if(listaAreas.get(i).getNombre().equals(nombreArea)){
-                for(int j = 0; j< listaAreas.get(i).getSkills().size(); j++){
-                    if(((Skill)listaAreas.get(i).getSkills().get(j)).getNombre().equals(nombreSkill)){
-                       listaAreas.get(i).getSkills().remove(j);
-                       aux = listaAreas.get(i).getPostulantes();
-                       listaAreas.get(i).getPostulantes().clear();
-                       agregarPostulantes(aux);
-                    }
-                }
-            }
-        }
-    }*/
     
     public void generarArchivo(){
         try{

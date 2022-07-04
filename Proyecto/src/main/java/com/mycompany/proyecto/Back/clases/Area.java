@@ -200,7 +200,7 @@ public class Area {
     public void mostrarParametrosEnumerados(){
         System.out.println("1.- Nombre");
         System.out.println("2.- Cantidad de vacantes");
-        System.out.println("3.- Cantiad total de puestos");
+        System.out.println("3.- Cantidad total de puestos");
         System.out.println("4.- Skills");
     }
 

@@ -9,7 +9,7 @@ package com.mycompany.proyecto.Back.excepciones;
  *
  * @author igale
  */
-public class FrontExceptions extends Exception{
+public class FrontExceptions extends Exception{ //Controla las excepciones del front
     public FrontExceptions(String msg){
         super(msg);
     }

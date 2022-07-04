@@ -12,7 +12,7 @@ import java.util.LinkedList;
  * @author igale
  */
 public class Postulante extends Persona {
-    private int añosExperiencia;
+    private int anosExperiencia;
     private String instituto;
     private int puntaje;
     private int expectativaSueldo;
@@ -20,7 +20,7 @@ public class Postulante extends Persona {
 
     public Postulante(){
         super();
-        this.añosExperiencia = 0;
+        this.anosExperiencia = 0;
         this.instituto = "";
         this.puntaje = 0;
         this.expectativaSueldo = 0;
@@ -28,13 +28,13 @@ public class Postulante extends Persona {
     
     public Postulante (String nombre, String apellido, String rut, String genero, int edad, String correo, String telefono, int experiencia, String instituto, int expectativa){
         super(nombre, apellido, rut, genero, edad, correo, telefono);
-        this.añosExperiencia = experiencia;
+        this.anosExperiencia = experiencia;
         this.instituto = instituto;
         this.expectativaSueldo = expectativa;
     }
     
     public void setExperiencia(int num){
-        this.añosExperiencia = num;
+        this.anosExperiencia = num;
     }
     
     public void setInstituto(String nombre){
@@ -50,7 +50,7 @@ public class Postulante extends Persona {
     }
     
     public int getExperiencia(){
-        return this.añosExperiencia;
+        return this.anosExperiencia;
     }
     
     public String getInstituto(){
@@ -73,7 +73,7 @@ public class Postulante extends Persona {
     
     public void mostrarParametrosEnumerados(){
         super.mostrarParametrosEnumerados();
-        System.out.println("9.- Años de experiencia");
+        System.out.println("9.- Anos de experiencia");
         System.out.println("10.- Instituto educacional");
         System.out.println("11.- Expectativa de sueldo");
     }
