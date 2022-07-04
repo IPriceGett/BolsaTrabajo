@@ -184,7 +184,12 @@ public void menuUsuario(Utilidades utiles){
 
                     break;
                 }
-
+                
+                case 17:
+                {
+                    utiles.generarArchivo();
+                }
+                
                 case 0:
                 {
                     System.out.println("Exit");

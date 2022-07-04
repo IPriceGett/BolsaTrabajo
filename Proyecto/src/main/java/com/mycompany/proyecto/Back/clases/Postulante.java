@@ -67,7 +67,7 @@ public class Postulante extends Persona {
     
 
     public void mostrarInfo(){
-        System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut() + " |           " + this.getPuntaje() + "           |          " + expectativaSueldo);
+        System.out.println(this.getNombre() + " " + this.getApellido() + " | " + this.getRut() + " |           " + this.getPuntaje() + "           |          " + this.getExpectativa());
         return;
     }
     

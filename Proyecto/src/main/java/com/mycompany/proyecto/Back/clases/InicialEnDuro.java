@@ -110,6 +110,7 @@ public class InicialEnDuro implements Data{
         System.out.println("14.- Mostrar postulante con el puntaje mas alto");
         System.out.println("15.- Mostrar postulantes con un puntaje superior a: ");
         System.out.println("16.- Mostrar postulantes con una expectativa de sueldo inferior a: ");
+        System.out.println("17.- Generar archivo");
         System.out.println("0.- Salir");
     }
     

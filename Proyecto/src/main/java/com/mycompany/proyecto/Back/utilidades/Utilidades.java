@@ -8,6 +8,9 @@ package com.mycompany.proyecto.Back.utilidades;
 import com.mycompany.proyecto.Back.excepciones.*;
 import com.mycompany.proyecto.Back.clases.*;
 import com.mycompany.proyecto.Back.interfaces.*;
+import java.io.File;
+import java.io.PrintWriter;
+import java.nio.file.Paths;
 
 /**
  *
@@ -231,7 +234,7 @@ public class Utilidades implements Utiles{
         return true;
     }
     
-    public void mostrarPostulantesPorArea(){ // muestra todos los postulantes de cierta area
+    public void mostrarPostulantesPorArea(){ // muestra los postulantes de cada area
         
         if (mapaPostulantes.isEmpty())
         {
@@ -745,10 +748,7 @@ public class Utilidades implements Utiles{
                                         }
                                     }
                                     
-                                    //System.out.println();
-                                    
                                 }while(opcion2 != 0);
-                                
                             }         
                         }
                         
@@ -795,6 +795,36 @@ public class Utilidades implements Utiles{
         }
     }*/
     
+    public void generarArchivo(){
+        try{
+            String path = Paths.get("").toAbsolutePath().normalize().toString();
+            System.out.println(path);      
+            File archivo = new File(path + "\\BolsaDeTrabajo.csv");
+            PrintWriter out = new PrintWriter(archivo);
+
+            for (int i = 0; i < listaAreas.size(); i++){
+                out.println(listaAreas.get(i).getNombre().toUpperCase());
+                out.println("Nombre completo        RUT      Puntaje de postulacion     Expectativa de sueldo");
+                
+                if(listaAreas.get(i).getLargoPostulantes() == 0){
+                    out.println("Esta área no tiene postulantes.");
+                    continue;
+                }
+
+                for (int j = 0; j < listaAreas.get(i).getLargoPostulantes(); j++){
+                    out.println(listaAreas.get(i).getPostulante(j).getNombre() + " " + listaAreas.get(i).getPostulante(j).getApellido() + " | " + listaAreas.get(i).getPostulante(j).getRut() + " |           " + listaAreas.get(i).getPostulante(j).getPuntaje() + "           |          " + listaAreas.get(i).getPostulante(j).getExpectativa());
+                }  
+            }
+
+            out.close();
+            
+        } catch (Exception ex){
+            System.out.println("Error relacionado al archivo");
+        }
+        
+        
+    }
+            
     public List<Postulante> obtenerPostulantes (){
         List<Postulante> listOfValue = new LinkedList<>(mapaPostulantes.values());
         return listOfValue;

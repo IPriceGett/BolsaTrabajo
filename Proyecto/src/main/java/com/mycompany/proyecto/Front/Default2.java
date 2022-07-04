@@ -98,9 +98,14 @@ public class Default2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VisualizarPostulantes viz = new VisualizarPostulantes(instancia); 
-        viz.setVisible(true);
-        this.dispose();// TODO add your handling code here:
+        try{
+            VisualizarPostulantes viz = new VisualizarPostulantes(instancia);
+            viz.setVisible(true);
+            this.dispose();// TODO add your handling code here:
+        } catch(Exception ex){
+            System.out.println("Error al cargar vista");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
